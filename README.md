@@ -94,7 +94,7 @@ node tests/run_tests.js --json   # machine-readable summary
   photography before any commercial re-publication.
 - Photographs in `images/` were sourced from Wikimedia Commons under free licenses; the
   bundled Vazirmatn font is under the SIL Open Font License.
-- License: not yet specified — owner decision before this repository is published.
+- License: not yet specified — owner decision.
 
 ---
 
