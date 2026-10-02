@@ -1,0 +1,230 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   شکارها — deals.html (خارج از منو، noindex، گیت توکن)
+   R62: هم‌پالت با کل سایت. تنها منبع رنگ = css/tokens.css.
+   قاعده: هیچ رنگ خارج از توکن (طلایی/تیتانیوم/خنثی) — برچسب پلتفرم رنگ‌کد نمی‌شود.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.deals-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--nk-s7) var(--nk-s4) var(--nk-s8);
+}
+
+.deals-header h1 {
+  font-size: var(--nk-fs-h2);
+  font-weight: var(--nk-fw-display);
+  color: var(--nk-text);
+  margin: 0 0 var(--nk-s2);
+  display: flex;
+  align-items: center;
+  gap: var(--nk-s2);
+  letter-spacing: 0;
+}
+
+.deals-header h1 svg {
+  color: var(--nk-accent-bright);
+  flex: 0 0 auto;
+}
+
+.deals-header p {
+  color: var(--nk-text-muted);
+  font-size: var(--nk-fs-sm);
+  margin: 0 0 var(--nk-s6);
+  line-height: var(--nk-lh-body);
+}
+
+/* ── فیلتر پلتفرم ─────────────────────────────────────────────────────── */
+.deal-platform-filter {
+  display: flex;
+  gap: var(--nk-s2);
+  flex-wrap: wrap;
+  margin-bottom: var(--nk-s4);
+}
+
+.deal-platform-btn {
+  background: var(--nk-surface-1);
+  border: 1px solid var(--nk-border-strong);
+  border-radius: var(--nk-r-pill);
+  padding: 0 var(--nk-s4);
+  min-height: var(--nk-touch-min);
+  font: inherit;
+  font-size: var(--nk-fs-xs);
+  font-weight: var(--nk-fw-ui);
+  color: var(--nk-text-muted);
+  cursor: pointer;
+  transition: color var(--nk-t-micro) var(--nk-ease-out), border-color var(--nk-t-micro) var(--nk-ease-out);
+}
+
+.deal-platform-btn:hover {
+  color: var(--nk-accent-bright);
+  border-color: var(--nk-accent-soft);
+}
+
+.deal-platform-btn:focus-visible {
+  outline: 3px solid var(--nk-accent-bright);
+  outline-offset: 2px;
+}
+
+.deal-platform-active {
+  background: linear-gradient(135deg, var(--nk-accent-bright) 0%, var(--nk-accent) 100%);
+  color: var(--nk-bg);
+  border-color: var(--nk-accent-bright);
+  font-weight: 700;
+}
+
+/* برچسب پلتفرم: خنثی و متنی — معنا با متن منتقل می‌شود، نه رنگ (WCAG color-not-only) */
+.deal-platform-tag {
+  border-radius: var(--nk-r-pill);
+  padding: 2px 10px;
+  font-size: var(--nk-fs-xs);
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--nk-surface-2);
+  color: var(--nk-text-muted);
+  border: 1px solid var(--nk-border);
+}
+
+/* ── گیت توکن ─────────────────────────────────────────────────────────── */
+.deal-gate {
+  background: var(--nk-surface-1);
+  border: 1px solid var(--nk-border);
+  border-radius: var(--nk-r-lg);
+  padding: var(--nk-s6);
+  text-align: center;
+}
+
+.deal-gate h2 {
+  margin: 0 0 var(--nk-s2);
+  font-size: var(--nk-fs-lg);
+  font-weight: var(--nk-fw-display);
+  color: var(--nk-text);
+}
+
+.deal-gate p {
+  color: var(--nk-text-muted);
+  font-size: var(--nk-fs-sm);
+}
+
+.deal-gate form {
+  display: flex;
+  gap: var(--nk-s3);
+  justify-content: center;
+  margin-top: var(--nk-s5);
+  flex-wrap: wrap;
+}
+
+.deal-gate input {
+  background: var(--nk-surface-2);
+  border: 1px solid var(--nk-border-strong);
+  border-radius: var(--nk-r-sm);
+  padding: 0 var(--nk-s3);
+  min-height: var(--nk-touch-min);
+  color: var(--nk-text);
+  min-width: 240px;
+  font: inherit;
+}
+
+.deal-gate input:focus-visible {
+  outline: 2px solid var(--nk-accent-bright);
+  outline-offset: 2px;
+}
+
+.deal-gate button {
+  background: linear-gradient(135deg, var(--nk-accent-bright) 0%, var(--nk-accent) 100%);
+  border: 0;
+  border-radius: var(--nk-r-sm);
+  padding: 0 var(--nk-s5);
+  min-height: var(--nk-touch-min);
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--nk-bg);
+  font: inherit;
+  font-weight: 700;
+}
+
+.deal-gate button:focus-visible {
+  outline: 3px solid var(--nk-accent-bright);
+  outline-offset: 2px;
+}
+
+.deal-gate-error {
+  color: #F87171;
+}
+
+.deal-count {
+  color: var(--nk-text-muted);
+  font-size: var(--nk-fs-sm);
+  margin-bottom: var(--nk-s4);
+}
+
+/* ── جدول شکارها ──────────────────────────────────────────────────────── */
+.deal-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--nk-border);
+  border-radius: var(--nk-r-md);
+  background: var(--nk-surface-1);
+}
+
+.deal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--nk-fs-sm);
+}
+
+.deal-table th,
+.deal-table td {
+  padding: var(--nk-s3);
+  text-align: right;
+  border-bottom: 1px solid var(--nk-border);
+  white-space: nowrap;
+}
+
+.deal-table thead th {
+  color: var(--nk-text-muted);
+  font-weight: 600;
+  font-size: var(--nk-fs-xs);
+}
+
+.deal-row:hover {
+  background: var(--nk-surface-2);
+}
+
+.deal-trim {
+  color: var(--nk-text-muted);
+  font-size: var(--nk-fs-xs);
+}
+
+.deal-badge {
+  background: var(--nk-accent-soft);
+  color: var(--nk-accent-bright);
+  border-radius: var(--nk-r-pill);
+  padding: 2px 10px;
+  font-weight: 700;
+  font-size: var(--nk-fs-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.deal-link a {
+  color: var(--nk-accent-bright);
+  text-decoration: none;
+}
+
+.deal-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .deals-main {
+    padding: var(--nk-s5) var(--nk-s4) var(--nk-s7);
+  }
+
+  .deal-gate {
+    padding: var(--nk-s5) var(--nk-s4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deal-platform-btn {
+    transition: none;
+  }
+}

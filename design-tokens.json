@@ -1,0 +1,347 @@
+{
+  "$schema": "https://json-spec.org/draft-07/schema#",
+  "meta": {
+    "name": "Novin Khodro Design Tokens & Brand System",
+    "version": "1.0.0",
+    "last_updated": "2026-09-04",
+    "author": "Code-Pro (Principal Architect)",
+    "project": "Novin Khodro Showroom",
+    "domain": "novinkhodro.shop",
+    "locale": "fa-IR",
+    "direction": "rtl"
+  },
+  "brand_identity": {
+    "names": {
+      "fa_formal": "نمایشگاه و نمایندگی رسمی اتومبیل نوین خودرو",
+      "fa_display": "نوین خودرو",
+      "fa_short": "نوین",
+      "en_display": "NOVIN KHODRO",
+      "en_sub": "AUTO SHOWROOM",
+      "en_full": "Novin Khodro Auto Showroom"
+    },
+    "taglines": {
+      "primary": "خرید از شما، اقساط از ما",
+      "secondary": "مرکز تخصصی خودروهای صفر کیلومتر و کارشناسی‌شده در تهران",
+      "financing": "طرح اختصاصی تسهیلات ۶ تا ۲۴ ماهه با تحویل فوری",
+      "trust": "تضمین اصالت شاسی، رنگ و کارکرد با گواهی رسمی کارشناسی"
+    },
+    "brand_archetype": {
+      "primary": "حکمران و رهبر (The Ruler) — مظهر اعتبار، انضباط مالی و استانداردهای نمایشگاهی تراز اول",
+      "secondary": "کارشناس و دانا (The Sage) — مبتنی بر داده‌های واقعی کارشناسی فنی، بدون مبالغه و فریب",
+      "vibe": "لوکس مدرن، متالیک تیتانیوم، باوقار، متمرکز بر سرعت و شفافیت معاملاتی"
+    },
+    "pillars": [
+      {
+        "id": "instant_delivery",
+        "title": "تحویل آنی همزمان با پیش‌پرداخت",
+        "desc": "خودرو بدون حتی یک ساعت معطلی همزمان با واریز پیش‌پرداخت به خریدار تحویل داده می‌شود."
+      },
+      {
+        "id": "guaranteed_inspection",
+        "title": "کارشناسی رسمی رنگ و فنی",
+        "desc": "تمامی خودروها مجهز به شناسنامه ۴۰۰ نقطه‌ای رنگ، بدنه، شاسی و سلامت موتور/گیربکس هستند."
+      },
+      {
+        "id": "direct_ownership",
+        "title": "سند ۶ دانگ به نام خریدار",
+        "desc": "سند قطعی از روز نخست به نام خریدار تنظیم و انتقال قانونی شفاف انجام می‌پذیرد."
+      },
+      {
+        "id": "flexible_terms",
+        "title": "اقساط بلندمدت ۶ الی ۲۴ ماهه",
+        "desc": "بازپرداخت منعطف ماهانه با چک صیادی و حداقل بروکراسی اداری در تهران و سراسر کشور."
+      }
+    ]
+  },
+  "tone_of_voice": {
+    "principles": {
+      "authoritative_not_arrogant": {
+        "fa": "مقتدر اما بدون تکبر",
+        "description": "کلمات باید بار حقوقی، مالی و تجربی را منتقل کنند؛ ادعاهای توخالی یا تخفیف‌های عجیب در شأن برند نیست."
+      },
+      "transparent_not_vague": {
+        "fa": "شفاف و بی‌پرده",
+        "description": "قیمت‌ها، درصد پیش‌پرداخت، سود تسهیلات و مبالغ ماهانه دقیقاً ذکر می‌شوند. پنهان‌کاری ارقام ممنوع است."
+      },
+      "terse_and_luxurious": {
+        "fa": "کوتاه، پیراسته و لوکس",
+        "description": "از جملات کشدار، تعارفات عامیانه و صفت‌های بازاری (حراج، مفت، زیر قیمت) اکیداً پرهیز شود."
+      },
+      "reassuring_security": {
+        "fa": "امنیت‌بخش و حقوقی",
+        "description": "استفاده از واژگان رسمی مانند «سند قطعی»، «تسویه رسمی»، «کارشناسی معتبر»، «شناسنامه مکتوب»."
+      }
+    },
+    "vocabulary": {
+      "preferred": [
+        "کارشناسی رسمی",
+        "تحویل آنی",
+        "تسهیلات بانکی و شرکتی",
+        "سند ۶ دانگ",
+        "کارکرد واقعی",
+        "صفر کیلومتر خشک",
+        "اقساط منعطف",
+        "استعلام رسمی",
+        "شناسنامه خودرو",
+        "تومان"
+      ],
+      "forbidden": [
+        "مفت",
+        "زیر قیمت بازار",
+        "ارزان‌ترین",
+        "حراج استثنایی",
+        "پول لازم",
+        "بدون سود",
+        "وام فوری",
+        "ماشین‌باز",
+        "بشتابید",
+        "ریال"
+      ]
+    },
+    "customer_personas": {
+      "luxury_buyer": {
+        "name": "خریدار لوکس و پریمیوم",
+        "focus": "اصالت خودرو، گارانتی فعال، سرعت معامله، حفظ پرستیژ شخصی",
+        "tone": "بسیار محترمانه، تاکید بر امکانات رفاهی و گارانتی شرکتی"
+      },
+      "installment_family": {
+        "name": "خریدار خانواده / طرح اقساطی",
+        "focus": "تناسب اقساط با بودجه ماهانه، امنیت مالی، شفافیت مدارک",
+        "tone": "اطمینان‌بخش، شفاف، ارائه جدول اقساط و فرمول صریح"
+      },
+      "urgent_seller": {
+        "name": "فروشنده فوری خودرو",
+        "focus": "تسویه درجا و نقدی، انتقال سند بی‌دردسر، کارشناسی منصفانه",
+        "tone": "سریع، مستقیم، با تاکید بر پرداخت آنی در محل نمایشگاه"
+      }
+    }
+  },
+  "persian_copy_rules": {
+    "numerals": {
+      "rule": "تمام اعداد در رابط کاربری، متن، قیمت، کیلومتر و تاریخ باید ۱۰۰٪ با ارقام فارسی (۰۱۲۳۴۵۶۷۸۹) رندر شوند.",
+      "implementation": "کاربرد تابع toPersianDigits و استفاده از font-variant-numeric: tabular-nums"
+    },
+    "currency": {
+      "primary_unit": "تومان",
+      "display_format": "{مقدار به رقم فارسی} تومان",
+      "large_numbers": "میلیارد و میلیون با نگارش صحیح (مثال: ۴,۳۵۰,۰۰۰,۰۰۰ تومان یا ۴.۳۵ میلیارد تومان)",
+      "prohibition": "عدم استفاده از واحد ریال در المان‌های بصری و بازاریابی"
+    },
+    "typography_hygiene": {
+      "zwnj": "رعایت دقیق نیم‌فاصله (Zero-Width Non-Joiner - U+200C) در تمام پیشوندها و پسوندها (می‌شود، کارشناسی‌شده، پیش‌پرداخت، بی‌رنگ).",
+      "letter_spacing": "عدم استفاده از letter-spacing منفی برای متون فارسی چسبان جهت جلوگیری از شکست فونت.",
+      "punctuation": "فاصله قبل از کاما و نقطه ممنوع، یک فاصله بعد از آن الزامی است."
+    },
+    "phone_normalization": {
+      "landline_display": "۰۲۱-۶۶۱۲۰۳۳۲",
+      "landline_tel": "tel:02166120332",
+      "mobile_regex": "^(\\+98|0)?9\\d{9}$",
+      "mobile_display": "۰۹۱۲-XXX-XXXX"
+    }
+  },
+  "design_tokens": {
+    "colors": {
+      "brand": {
+        "gold": {
+          "primary": "#D97706",
+          "hover": "#FBBF24",
+          "light": "#FDE68A",
+          "subtle": "rgba(217, 119, 6, 0.12)",
+          "ring": "rgba(251, 191, 36, 0.25)",
+          "gradient_primary": "linear-gradient(135deg, #FBBF24 0%, #D97706 100%)",
+          "gradient_hairline": "linear-gradient(to left, #FBBF24, rgba(217, 119, 6, 0.35) 45%, transparent 90%)"
+        },
+        "titanium_dark": {
+          "bg_base": "#0B1220",
+          "surface_card": "#111827",
+          "surface_elevated": "#1B2A44",
+          "surface_input": "#101A2E",
+          "deep_shadow": "#041215"
+        },
+        "accents": {
+          "cyan": "#60A5FA",
+          "cyan_light": "#93C5FD",
+          "whatsapp": "#22C55E",
+          "call_alert": "#DC2626"
+        }
+      },
+      "semantic": {
+        "text": {
+          "primary": "#FFFFFF",
+          "secondary": "#F8FAFC",
+          "muted": "#94A3B8",
+          "gold_accent": "#FBBF24"
+        },
+        "border": {
+          "subtle": "rgba(255, 255, 255, 0.08)",
+          "line_on_dark": "rgba(30, 41, 59, 0.8)",
+          "gold_tint": "rgba(251, 191, 36, 0.35)",
+          "focus_ring": "#FBBF24"
+        },
+        "status": {
+          "success": "#10B981",
+          "warning": "#F59E0B",
+          "error": "#EF4444",
+          "info": "#3B82F6"
+        }
+      }
+    },
+    "typography": {
+      "font_family": {
+        "primary": "Vazirmatn, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        "monospace": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+      },
+      "font_weights": {
+        "regular": 400,
+        "medium": 500,
+        "bold": 700,
+        "black": 900
+      },
+      "scale": {
+        "xs": { "size": "0.75rem", "line_height": "1.4" },
+        "sm": { "size": "0.875rem", "line_height": "1.5" },
+        "base": { "size": "1rem", "line_height": "1.75" },
+        "lg": { "size": "1.125rem", "line_height": "1.6" },
+        "xl": { "size": "1.25rem", "line_height": "1.5" },
+        "2xl": { "size": "1.5rem", "line_height": "1.4" },
+        "3xl": { "size": "1.875rem", "line_height": "1.3" },
+        "4xl": { "size": "2.25rem", "line_height": "1.25" },
+        "5xl": { "size": "2.85rem", "line_height": "1.2" }
+      }
+    },
+    "spacing": {
+      "base": "4px",
+      "scale": {
+        "3xs": "2px",
+        "2xs": "4px",
+        "xs": "8px",
+        "sm": "12px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "32px",
+        "2xl": "48px",
+        "3xl": "64px",
+        "4xl": "96px"
+      },
+      "touch_targets": {
+        "minimum": "44px",
+        "comfortable": "48px",
+        "standard_radius": "999px"
+      }
+    },
+    "layout": {
+      "container_width": "1240px",
+      "breakpoints": {
+        "mobile_compact": "390px",
+        "mobile": "480px",
+        "tablet": "768px",
+        "laptop": "1024px",
+        "desktop": "1280px",
+        "wide": "1440px"
+      }
+    },
+    "radii": {
+      "sm": "6px",
+      "md": "10px",
+      "lg": "16px",
+      "xl": "24px",
+      "full": "9999px"
+    },
+    "shadows": {
+      "card_dark": "0 10px 30px rgba(0, 0, 0, 0.4)",
+      "card_hover": "0 14px 34px rgba(0, 0, 0, 0.5), 0 0 0 1px #D97706, 0 0 18px rgba(251, 191, 36, 0.2)",
+      "gold_glow": "0 0 14px rgba(251, 191, 36, 0.35)",
+      "modal_depth": "0 25px 60px -12px rgba(0, 0, 0, 0.65)"
+    },
+    "motion": {
+      "durations": {
+        "instant": "150ms",
+        "quick": "250ms",
+        "standard": "350ms",
+        "deliberate": "600ms",
+        "kenburns": "8000ms"
+      },
+      "easings": {
+        "luxury_spring": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "ease_out_smooth": "cubic-bezier(0.25, 0.8, 0.25, 1)",
+        "kenburns_gentle": "cubic-bezier(0.25, 0.6, 0.35, 1)"
+      },
+      "reduced_motion": {
+        "rule": "@media (prefers-reduced-motion: reduce)",
+        "override": "transition: none !important; animation: none !important;"
+      }
+    }
+  },
+  "microcopy_inventory": {
+    "buttons": {
+      "view_specs": "مشاهده شناسنامه و کارشناسی",
+      "call_showroom": "تماس و استعلام قیمت",
+      "inquire_whatsapp": "مشاوره خرید اقساطی",
+      "calculate_installments": "محاسبه اقساط خودرو",
+      "submit_sell": "درخواست فروش فوری خودرو",
+      "reset_filters": "نمایش کل موجودی نمایشگاه",
+      "back_to_top": "بازگشت به ابتدای صفحه"
+    },
+    "badges": {
+      "brand_new": "صفر خشک ۱۴۰۳",
+      "fully_inspected": "کارشناسی رسمی معتبر",
+      "special_plan": "طرح ویژه خرید اقساطی",
+      "low_mileage": "کم‌کارکرد واقعی"
+    },
+    "status_messages": {
+      "empty_catalog": "خودرویی با این مشخصات در موجودی فعال نمایشگاه یافت نشد.",
+      "empty_catalog_action": "می‌توانید فیلترها را ریست کنید یا با کارشناسان ما تماس بگیرید.",
+      "calc_exceeds_ceiling": "حداکثر سقف تسهیلات خرید اقساطی ۲,۵۰۰,۰۰۰,۰۰۰ تومان است.",
+      "calc_invalid_phone": "لطفاً یک شماره همراه معتبر ۱۱ رقمی ایرانی (مانند ۰۹۱۲۳۴۵۶۷۸۹) وارد کنید.",
+      "sell_form_success": "درخواست فروش خودروی شما با موفقیت ثبت شد. کارشناسان نوین خودرو حداکثر تا ۳۰ دقیقه آینده تماس خواهند گرفت."
+    }
+  },
+  "contact_and_legal": {
+    "showroom": {
+      "trade_name": "نمایشگاه اتومبیل نوین خودرو",
+      "phone": "۰۲۱-۶۶۱۲۰۳۳۲",
+      "phone_clean": "02166120332",
+      "mobile": "۰۹۱۲۶۹۷۹۳۲۹",
+      "address": "تهران، ستارخان، میدان توحید، خیابان نصرت غربی، پلاک ۲۱",
+      "geo": {
+        "latitude": 35.7078,
+        "longitude": 51.3782
+      },
+      "working_hours": {
+        "weekdays": "شنبه تا چهارشنبه: ۹:۰۰ الی ۲۱:۰۰",
+        "thursday": "پنج‌شنبه‌ها: ۹:۰۰ الی ۱۸:۰۰",
+        "friday": "جمعه‌ها: با هماهنگی قبلی تلفنی"
+      }
+    },
+    "legal_notices": {
+      "copyright": "© ۱۴۰۳ کلیه حقوق مادی و معنوی برای نمایشگاه اتومبیل نوین خودرو محفوظ است.",
+      "pricing_disclaimer": "قیمت‌های درج‌شده بر اساس کارشناسی روز و نوسانات رسمی بازار خودرو تهران استخراج شده‌اند."
+    }
+  },
+  "seo_and_aeo_entities": {
+    "schema_type": "AutoDealer",
+    "primary_entities": [
+      "خرید اقساطی خودرو در تهران",
+      "نمایشگاه خودرو ستارخان",
+      "فروش اقساطی اکستریم VX",
+      "قیمت کارشناسی خودرو",
+      "نوین خودرو توحید"
+    ],
+    "services": [
+      "خرید اقساطی با سند به نام",
+      "فروش فوری با تسویه درجا",
+      "کارشناسی رنگ، بدنه و فنی ۴۰۰ نقطه‌ای",
+      "معاوضه خودرو صفر با کارکرده"
+    ]
+  },
+  "extensibility_nodes": {
+    "branches_enabled": false,
+    "multi_currency_enabled": false,
+    "online_booking_enabled": true,
+    "custom_fields_schema": {
+      "future_financing_partners": [],
+      "additional_inspection_criteria": [],
+      "vip_concierge_notes": ""
+    }
+  }
+}

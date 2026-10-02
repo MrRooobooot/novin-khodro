@@ -1,0 +1,1384 @@
+/* ==========================================================================
+   استایل‌های واکنش‌گرایی کامل (Ultra-Responsive & Mobile-First CSS)
+   سازگاری بدون نقص از ۳۲۰ پیکسل موبایل تا مانیتورهای عریض 4K
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .slider-container {
+    height: 480px;
+  }
+
+  .slide-title {
+  }
+
+  .slide-overlay {
+    padding: 0 2.5rem;
+  }
+
+  .slide-content {
+    padding-right: 1.1rem;
+  }
+
+  .installment-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .cars-grid-immersive {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+
+  .sell-banner-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .contact-layout-clean {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid-clean {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* کشوی ناوبری از ۱۲۰۰px — هدر با ۷ لینک nowrap در 1024–1200 سرریز می‌کرد و CTA تماس نامرئی می‌شد (اخبار لپ‌تاپ 1280) */
+@media (max-width: 1200px) {
+  nav {
+    display: contents;
+  }
+
+  .mobile-toggle {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* منوی کشویی موبایل — پنل تیره هماهنگ با هدر Titanium */
+  .nav-links {
+    position: fixed;
+    top: 80px; /* ارتفاع هدر دسکتاپ */
+    right: 0;
+    width: 82%;
+    max-width: 320px;
+    height: calc(100vh - 80px);
+    background: var(--surface-900);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem 1.25rem;
+    transform: translateX(105%);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), visibility 0.3s ease, opacity 0.3s ease;
+    gap: 0.5rem;
+    z-index: 999;
+    overflow-y: auto;
+    /* خط مویی طلایی لبه کشو — هویت برند طلایی نوین خودرو (Round 23) */
+    border-left: 1px solid rgba(252, 224, 76, 0.55);
+    box-shadow: -10px 0 34px rgba(0, 0, 0, 0.45), -3px 0 18px rgba(233, 191, 50, 0.12);
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .nav-link-item {
+    width: 100%;
+    font-size: var(--nk-fs-body);
+    padding: 0.85rem 0.5rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    color: var(--text-on-dark);
+    border-bottom: 1px solid var(--line-on-dark);
+  }
+
+  .nav-link-item:hover,
+  .nav-link-item.active {
+    color: #FCE04C;
+    /* R65: پیل طلایی متالیک هدر دسکتاپ (R63, style.css) به کشوی موبایل نشت می‌کرد —
+       متن طلایی روی پس‌زمینهٔ شاین طلایی ≈ کنتراست ۱.۲. در کشو پیل خنثی می‌شود. */
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line-on-dark);
+    border-radius: 0;
+    box-shadow: none;
+    margin-inline-start: 0;
+    padding: 0.85rem 0.5rem;
+  }
+
+  /* حلقه فوکوس طلایی روی لینک‌های کشو و دکمه همبرگر (WCAG 2.4.7) */
+  .nav-link-item:focus-visible,
+  .mobile-toggle:focus-visible {
+    outline: 2px solid var(--brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .nav-link-item::after {
+    display: none;
+  }
+
+  /* احترام به کاهش حرکت در اسلاید کشو (WCAG 2.3.3) */
+  @media (prefers-reduced-motion: reduce) {
+    .nav-links {
+      transition: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  /* پدینگ کانتینر در موبایل */
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* تنظیم پدینگ بدنه برای جلوگیری از هم‌پوشانی نوار چسبان پایین با فوتر و دکمه‌های نقشه */
+  body {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* فعال‌سازی نوار چسبان پایین موبایل */
+  .mobile-bottom-bar {
+    display: flex;
+    padding: 0.45rem 0.5rem max(0.45rem, env(safe-area-inset-bottom));
+    gap: 0.4rem;
+  }
+
+  .mob-bar-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0 0.3rem;
+    font-size: var(--nk-fs-xs);
+    gap: 0.35rem;
+    white-space: nowrap;
+  }
+
+  .mob-bar-btn svg {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+  }
+
+  /* غیرفعال کردن دکمه‌های شناور دسکتاپ در موبایل */
+  .floating-action-hub {
+    display: none;
+  }
+
+  /* هدر در موبایل */
+  .header-inner {
+    height: 70px;
+    gap: 0.75rem;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .brand-logo-img {
+    height: 44px;
+    max-width: 200px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .logo-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+  }
+
+  .logo-badge svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .logo-text h1 {
+    font-size: var(--nk-fs-h3);
+  }
+
+  .logo-text span {
+    font-size: var(--nk-fs-xs);
+  }
+
+  .btn-header-call span {
+    display: none;
+  }
+
+  /* R62: متن سرگردان (بدون span) هم پنهان شود تا از کادر ۴۴px بیرون نزند */
+  .btn-header-call {
+    font-size: 0;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: var(--radius-sm);
+  }
+
+  .btn-header-call svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* هدر موبایل ۷۰px است — کشو از ۱۲۰۰ با top:80 دسکتاپ تنظیم شده */
+  .nav-links {
+    top: 70px;
+    height: calc(100vh - 70px);
+  }
+
+  /* اسلایدر هیرو در موبایل */
+  .hero-slider-section {
+    padding: 0.5rem 0 1.5rem;
+  }
+
+  .slider-container {
+    height: 440px;
+    border-radius: var(--radius-md);
+  }
+
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 1.25rem 1rem 2.25rem;
+    background: linear-gradient(0deg, rgba(9, 13, 22, 0.98) 0%, rgba(9, 13, 22, 0.88) 60%, rgba(9, 13, 22, 0.45) 100%);
+    align-items: flex-end;
+  }
+
+  .slide-content {
+    width: 100%;
+    max-width: 100%;
+    text-align: right;
+  }
+
+  .slide-pill {
+    font-size: var(--nk-fs-xs);
+    padding: 0.35rem 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .slide-title {
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+
+  .slide-desc {
+    font-size: var(--nk-fs-sm);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0.85rem;
+  }
+
+  .slide-price-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+    padding: 0.6rem 0.85rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .slide-price {
+    font-size: var(--nk-fs-lg);
+  }
+
+  .slide-installment-hint {
+    border-right: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-right: 0;
+    padding-top: 0.35rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .slider-arrow {
+    display: none;
+  }
+
+  .slide-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .btn-slide-primary,
+  .btn-slide-call {
+    width: 100%;
+    font-size: var(--nk-fs-sm);
+    padding: 0 1rem;
+    height: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .slider-dots {
+    bottom: 0.5rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  /* فیلترها و کاتالوگ */
+  .filter-row-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .clean-search {
+    width: 100%;
+  }
+
+  .clean-select-group {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cars-grid-immersive {
+    grid-template-columns: 1fr;
+  }
+
+  .card-media {
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  .action-buttons-group {
+    grid-template-columns: 1fr;
+  }
+
+  /* محاسبه‌گر اقساط */
+  .calculator-card {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .calc-control-group {
+    padding: 0.65rem 0.7rem;
+    margin: 0 -0.7rem 1.4rem;
+  }
+
+  .calc-step-num {
+    width: 1.35rem;
+    height: 1.35rem;
+    min-width: 1.35rem;
+    margin-left: 0.45rem;
+    font-size: var(--nk-fs-xs);
+  }
+
+  .calc-results-box {
+    padding: 1.25rem 1.15rem;
+  }
+
+  .calc-inline-note {
+    font-size: var(--nk-fs-xs);
+    padding: 0.65rem 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .inst-headline {
+    font-size: var(--nk-fs-subhead);
+  }
+
+  .tenure-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-preset-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .preset-pill-btn {
+    flex: 1 1 calc(50% - 0.4rem);
+    min-width: 100px;
+    padding: 0 0.5rem;
+    font-size: var(--nk-fs-xs);
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .calc-res-row.highlight {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .res-val-main {
+    font-size: var(--nk-fs-lg);
+  }
+
+  /* فرم ثبت خودرو */
+  .sell-section-wrapper {
+    padding: 1rem 0 2.5rem;
+  }
+
+  .sell-banner-box {
+    padding: 1.75rem 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  .sell-banner-text h2 {
+    font-size: var(--nk-fs-subhead);
+  }
+
+  .sell-mini-form {
+    padding: 1.35rem 1.15rem;
+  }
+
+  .form-grid-dual {
+    grid-template-columns: 1fr;
+  }
+
+  /* مودال در موبایل به حالت Bottom Sheet */
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    max-height: 92vh;
+    width: 100%;
+    max-width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 1.5rem 1.15rem max(2rem, env(safe-area-inset-bottom));
+  }
+
+  .modal-close {
+    top: 1rem;
+    left: 1rem;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .modal-main-img-box {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+
+  .modal-car-title {
+    font-size: var(--nk-fs-lg);
+  }
+
+  .modal-thumb-btn {
+    width: 88px;
+    height: 66px;
+  }
+
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-footer-actions {
+    flex-direction: column;
+  }
+
+  /* فوتر — چیدمان تک‌ستونی موبایل با اهداف لمسی ۴۴ پیکسلی */
+  .footer-grid-clean {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .footer-clean {
+    padding: 3.25rem 0 2rem;
+  }
+
+  .footer-nav-list a {
+    padding: 0.7rem 0;
+    display: block;
+  }
+
+  .footer-social-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .footer-bottom-clean {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  /* فوتر — انباشت تک‌ستونی در ۶۴۰ پیکسل با اهداف لمسی ۴۴ پیکسلی */
+  .footer-grid-clean {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .footer-clean {
+    padding: 3.25rem 0 2rem;
+  }
+
+  .footer-nav-list a {
+    padding: 0.7rem 0;
+    display: block;
+    min-height: 44px;
+  }
+
+  .footer-social-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .footer-back-top {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer-bottom-clean {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .footer-grid-clean {
+    gap: 2rem;
+  }
+
+  /* r34: فوتر در ۳۹۰ پیکسل — عنوان ستون‌ها و ردیف‌های تماس فشرده‌تر */
+  .footer-col-title {
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .footer-phone-text,
+  .footer-address-text,
+  .footer-time-text {
+    padding: 0.4rem 0.45rem;
+    margin-right: -0.45rem;
+    margin-bottom: 0.45rem;
+    font-size: var(--nk-fs-sm);
+  }
+
+  /* کارت‌های کاتالوگ — چیدمان تمیز در عرض ۳۹۰ پیکسل */
+  .card-info {
+    padding: 1.1rem 1.05rem 1.2rem;
+  }
+
+  .card-specs-minimal {
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .spec-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .spec-val {
+    font-size: var(--nk-fs-sm);
+  }
+
+  .price-val {
+    font-size: var(--nk-fs-lg);
+  }
+
+  .price-unit {
+    font-size: var(--nk-fs-xs);
+  }
+
+  .card-car-name {
+    font-size: var(--nk-fs-h3);
+  }
+
+  .footer-brand-title {
+    font-size: var(--nk-fs-lg);
+  }
+
+  .footer-col-title {
+    font-size: var(--nk-fs-body);
+  }
+
+  .footer-nav-list a,
+  .footer-phone-text,
+  .footer-address-text,
+  .footer-time-text {
+    font-size: var(--nk-fs-sm);
+  }
+
+  .footer-social-row {
+    gap: 0.5rem;
+  }
+
+  .footer-back-top {
+    padding: 0.45rem 0.85rem;
+    font-size: var(--nk-fs-xs);
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title-large {
+  }
+
+  .slide-title {
+  }
+
+  .slide-actions {
+    grid-template-columns: 1fr;
+  }
+
+  /* کپشن و کنترل‌های اسلایدر در موبایل: خط مویی طلایی ظریف‌تر، تایپوگرافی فشرده */
+  .slide-content {
+    padding-right: 0.85rem;
+  }
+
+  .slide-content::before {
+    width: 2.5px;
+    top: 0.25rem;
+    bottom: 0.25rem;
+  }
+
+  .slide-pill {
+    font-size: var(--nk-fs-xs);
+    padding: 0.3rem 0.75rem;
+    gap: 0.35rem;
+  }
+
+  .slide-pill svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .slide-price {
+    font-size: var(--nk-fs-h3);
+  }
+
+  .slide-installment-hint strong {
+    font-size: var(--nk-fs-body);
+  }
+
+  .btn-slide-primary,
+  .btn-slide-call {
+    min-height: 44px;
+  }
+
+  .quick-preset-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .preset-pill-btn {
+    flex: 1 1 calc(50% - 0.35rem);
+    min-width: 85px;
+    font-size: var(--nk-fs-xs);
+  }
+}
+
+/* پالایش ۳۹۰ پیکسل: آیفون ۱۲/۱۳/۱۴ و هم‌اندازه‌ها */
+@media (max-width: 390px) {
+  /* پالایش کشوی موبایل در عرض ۳۹۰ پیکسل (Round 23) */
+  .nav-links {
+    width: 88%;
+    max-width: 300px;
+    padding: 1.25rem 0.9rem;
+  }
+
+  .nav-link-item {
+    font-size: var(--nk-fs-sm);
+    padding: 0.7rem 0.4rem;
+    min-height: 44px;
+  }
+
+  /* R65: پدینگ ردیف فعال باید با پدینگ کشوی ۳۹۰ یکی بماند */
+  .nav-link-item:hover,
+  .nav-link-item.active {
+    padding: 0.7rem 0.4rem;
+  }
+
+  .slider-container {
+    height: 440px;
+  }
+
+  .slide-overlay {
+    padding: 1.5rem 1rem 3.5rem;
+  }
+
+  .slide-title {
+    line-height: 1.35;
+  }
+
+  .slide-desc {
+    font-size: var(--nk-fs-sm);
+    -webkit-line-clamp: 3;
+    line-height: 1.65;
+  }
+
+  .slide-price-box {
+    padding: 0.65rem 0.85rem;
+    gap: 0.35rem;
+  }
+
+  .slide-price {
+    font-size: var(--nk-fs-lg);
+  }
+
+  .slide-actions {
+    gap: 0.5rem;
+  }
+
+  /* پالایش نوار فیلتر کاتالوگ در عرض ۳۹۰ پیکسل (Round 25) */
+  .filter-bar-clean {
+    padding: 1rem 0.85rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .filter-row-top {
+    gap: 0.65rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .clean-select-group {
+    grid-template-columns: 1fr;
+  }
+
+  /* R41: پالایش کنترل‌های کاتالوگ در عرض ۳۹۰ پیکسل — تاچ تارگت ۴۴px و فلش طلایی */
+  .clean-search input {
+    font-size: var(--nk-fs-body);
+    padding-left: 1rem;
+  }
+
+  .clean-select {
+    width: 100%;
+    min-height: 44px;
+    height: 44px;
+    font-size: var(--nk-fs-sm);
+    background-position: left 0.75rem center;
+    padding-left: 2.3rem;
+  }
+
+  .section-title-large::after {
+    top: -0.7rem;
+    width: 44px;
+  }
+
+  .filter-categories-pills {
+    gap: 0.5rem;
+    padding-bottom: 0.3rem;
+  }
+
+  /* R62: در موبایل پنل فیلترها در جریان صفحه باز شود (بدون شناوری) */
+  .filters-more .clean-select-group {
+    position: static;
+    min-width: 0;
+    margin-top: 0.5rem;
+  }
+
+  .cat-pill {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 0.9rem;
+    font-size: var(--nk-fs-xs);
+  }
+
+  .btn-slide-primary,
+  .btn-slide-call {
+    font-size: var(--nk-fs-sm);
+  }
+
+  .slider-dots {
+    gap: 2.1rem  /* R56: pitch ≈ 45.6px → تارگت ۴۴px بدون هم‌پوشانی */; /* pitch 36px = hit-area → no overlapping touch zones */
+    padding: 0.3rem 0.65rem;
+    bottom: 0.45rem;
+  }
+
+  .slider-dot.active {
+    width: 26px;
+  }
+
+  /* R24: بهبود بخش تماس در عرض ۳۹۰ پیکسل */
+  .contact-section-clean {
+    padding: 3rem 0;
+  }
+
+  .contact-details-box h3 {
+    font-size: var(--nk-fs-lg);
+  }
+
+  .contact-icon-bubble {
+    width: 42px;
+    height: 42px;
+  }
+
+  .contact-icon-bubble svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .phone-link-large {
+    font-size: var(--nk-fs-h3);
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-row-item {
+    padding: 0.85rem 0;
+  }
+
+  .map-buttons-strip {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .nav-links-cluster {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .app-nav-link {
+    width: 100%;
+  }
+
+  .clean-map-frame {
+    flex: 0 0 260px;
+    min-height: 260px;
+  }
+
+}
+
+/* جلوگیری کامل از هرگونه اسکرول افقی */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* واکنش‌گرایی تبلت: کارت‌های اعتماد (Round 28) */
+@media (max-width: 1024px) {
+  .why-us-trust {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
+  }
+}
+
+/* پالایش ۳۹۰ پیکسل: بخش چرا ما / آمار (Round 26) */
+@media (max-width: 390px) {
+  .why-us-trust-card {
+    padding: 1.1rem 0.9rem;
+  }
+
+  .why-us-trust-card h3 {
+    font-size: var(--nk-fs-sm);
+  }
+
+  .why-us-trust-card p {
+    font-size: var(--nk-fs-xs);
+  }
+
+  .trust-hours {
+    min-height: 44px;
+  }
+
+  .why-us-section {
+    padding: 2.75rem 0 3rem;
+  }
+
+  .why-us-section::before {
+    width: 56px;
+    margin-bottom: 1.5rem;
+  }
+
+  .why-us-head h2 {
+    font-size: var(--nk-fs-lg);
+  }
+
+  .why-us-head p {
+    font-size: var(--nk-fs-xs);
+  }
+
+  .why-us-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .why-us-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .why-us-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .why-us-card h3 {
+    font-size: var(--nk-fs-sm);
+  }
+
+  .why-us-card p {
+    font-size: var(--nk-fs-xs);
+  }
+
+  .why-us-stats {
+    padding: 1.1rem 0.85rem;
+  }
+
+  .why-us-stat {
+    min-height: 44px;
+  }
+
+  .why-us-stat strong {
+    font-size: var(--nk-fs-sm);
+  }
+
+  .why-us-stat span:last-child {
+    font-size: var(--nk-fs-xs);
+  }
+
+  /* R30: FAQ accordion compact refinements @390px */
+  .faq-question {
+    min-height: 48px;
+    padding: 0.9rem 1rem;
+    font-size: var(--nk-fs-sm);
+  }
+
+  .faq-answer {
+    padding: 0 1rem;
+    font-size: var(--nk-fs-sm);
+  }
+
+  .faq-item.open .faq-answer {
+    padding: 0.9rem 1rem 1.1rem;
+  }
+}
+
+/* ==========================================================================
+   Round-30: پالایش اختصاصی پیل‌های فیلتر کاتالوگ در عرض ۳۹۰ پیکسل
+   ========================================================================== */
+@media (max-width: 390px) {
+  .filter-categories-pills {
+    gap: 0.45rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .cat-pill {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 0.8rem;
+    font-size: var(--nk-fs-xs);
+    border-radius: 999px;
+  }
+
+  .cat-pill.active {
+    box-shadow: 0 3px 10px rgba(233, 191, 50, 0.30);
+  }
+
+  .cat-pill:focus-visible {
+    outline: 2px solid var(--brand-gold);
+    outline-offset: 2px;
+  }
+}
+
+/* ==========================================================================
+   R31: بلکه بهینه‌سازی ۳۹۰px — بخش تماس و نوار CTA
+   ========================================================================== */
+@media (max-width: 390px) {
+  .contact-details-box h3 {
+    font-size: var(--nk-fs-lg);
+  }
+
+  .contact-row-item {
+    padding: 0.9rem 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .contact-icon-bubble {
+    width: 44px;
+    height: 44px;
+  }
+
+  .contact-icon-bubble svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .phone-link-large {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: var(--nk-fs-h3);
+  }
+
+  .cta-band {
+    padding: 1.75rem 0;
+  }
+
+  .cta-band-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .cta-band-title {
+    font-size: var(--nk-fs-h3);
+  }
+
+  .cta-band-actions {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .cta-band-phone,
+  .cta-band-wa {
+    min-height: 44px;
+    min-width: 44px;
+    width: 100%;
+    font-size: var(--nk-fs-body);
+  }
+
+  .cta-band-phone:focus-visible,
+  .cta-band-wa:focus-visible,
+  .app-nav-link:focus-visible {
+    outline: 2px solid var(--brand-gold);
+    outline-offset: 2px;
+  }
+}
+
+/* ==========================================================================
+   بخش چگونه کار می‌کند — راند ۳۲
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .how-it-works-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+  }
+
+  .how-it-works-steps::before {
+    display: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .how-it-works-section {
+    padding: 3rem 0 3.25rem;
+  }
+
+  .how-it-works-head h2 {
+    font-size: var(--nk-fs-lg);
+  }
+
+  .how-it-works-steps {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .how-step-card {
+    padding: 1.15rem 1rem;
+  }
+
+  .how-step-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .how-step-card h3 {
+    font-size: var(--nk-fs-sm);
+  }
+
+  .how-step-card p {
+    font-size: var(--nk-fs-xs);
+  }
+}
+
+/* ==========================================================================
+   R33: پالایش اختصاصی ردیف CTA/قیمت کارت کاتالوگ در عرض ۳۹۰ پیکسل
+   ========================================================================== */
+@media (max-width: 390px) {
+  .card-bottom-actions {
+    gap: 0.7rem;
+  }
+
+  .card-price-row {
+    padding-top: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+  }
+
+  .price-val {
+    font-size: var(--nk-fs-h3);
+  }
+
+  /* R62: یک CTA اصلی + اقدام ثانویهٔ ۴۴px آیکونی (نه دو دکمهٔ تمام‌عرض) */
+  .action-buttons-group {
+    grid-template-columns: 1fr 44px 44px;
+    gap: 0.5rem;
+  }
+
+  .btn-show-details,
+  .btn-whatsapp-inquire {
+    width: 100%;
+    min-height: 44px;
+    min-width: 44px;
+    font-size: var(--nk-fs-sm);
+    letter-spacing: 0;
+  }
+
+  .btn-show-details:hover,
+  .btn-whatsapp-inquire:hover {
+    transform: none;
+  }
+
+  .btn-show-details:focus-visible,
+  .btn-whatsapp-inquire:focus-visible {
+    outline: 2px solid var(--brand-gold);
+    outline-offset: 2px;
+  }
+}
+
+/* ==========================================================================
+   R35: پالایش اختصاصی پنل محاسبه‌گر اقساط در عرض ۳۹۰ پیکسل
+   ========================================================================== */
+@media (max-width: 390px) {
+  .calculator-card {
+    padding: 1.35rem 1.1rem;
+  }
+
+  .calc-control-group {
+    padding: 0.6rem 0.7rem;
+    margin: 0 -0.7rem 1.25rem;
+  }
+
+  .calc-results-box {
+    padding: 1.15rem 1rem;
+    margin: 1.35rem 0 1.15rem;
+  }
+
+  .calc-res-row {
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    padding: 0.5rem 0;
+    font-size: var(--nk-fs-sm);
+  }
+
+  .res-val {
+    font-size: var(--nk-fs-sm);
+  }
+
+  .res-val-main {
+    font-size: var(--nk-fs-lg);
+    white-space: normal;
+    text-align: left;
+  }
+
+  .res-label-main {
+    font-size: var(--nk-fs-sm);
+  }
+
+  .tenure-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .preset-pill-btn,
+  .tenure-btn {
+    min-height: 44px;
+    font-size: var(--nk-fs-sm);
+  }
+
+  .calc-inline-note {
+    font-size: var(--nk-fs-xs);
+    padding: 0.6rem 0.8rem;
+  }
+
+  .preset-pill-btn:focus-visible,
+  .tenure-btn:focus-visible,
+  .btn-apply-loan:focus-visible,
+  .btn-calc-phone:focus-visible {
+    outline-offset: 2px;
+  }
+}
+
+/* راند ۳۷: بهبود موبایل ۳۹۰px برای گالری تصاویر مودال خودرو */
+@media (max-width: 390px) {
+  .modal-nav-arrow {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .modal-nav-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .modal-img-counter {
+    font-size: var(--nk-fs-xs);
+    padding: 0.2rem 0.6rem;
+  }
+}
+
+/* راند ۴۲: پالایش موبایل ۳۹۰px — محاسبه‌گر اقساط و کارت‌های طرح */
+@media (max-width: 390px) {
+  .installment-special-section {
+    padding: 3rem 0;
+  }
+
+  .installment-banner-head {
+    margin-bottom: 2rem;
+  }
+
+  .calculator-card {
+    padding: 1.35rem 1.1rem;
+  }
+
+  .calc-control-group {
+    padding: 0.6rem 0.65rem;
+    margin: 0 -0.65rem 1.25rem;
+  }
+
+  .calc-val-badge {
+    font-size: var(--nk-fs-sm);
+    padding: 0.15rem 0.55rem;
+  }
+
+  .calc-results-box {
+    padding: 1.15rem 1rem;
+  }
+
+  .quick-preset-row,
+  .tenure-buttons,
+  .calc-action-buttons {
+    width: 100%;
+  }
+
+  .quick-preset-row .preset-pill-btn {
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+
+  .btn-apply-loan,
+  .btn-calc-phone {
+    width: 100%;
+  }
+
+  .inst-step-card {
+    padding: 1.05rem 0.95rem;
+  }
+
+  .inst-step-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+  }
+}
+
+/* R57: ردیف مزیت‌های فرم فروش در موبایل یک‌ستونه */
+@media (max-width: 700px) {
+  .sell-points-row {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+}
+
+/* R58: تبلت — مراحل خرید ۲×۲ (قبلاً ۴ستونه؛ متن کارت به ۱۳۰px می‌رسید) */
+@media (min-width: 641px) and (max-width: 1080px) {
+  .how-it-works-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 1.1rem;
+  }
+
+  .how-it-works-steps::before {
+    display: none;
+  }
+}
+
+/* R65: ۳۲۰–۳۶۰px — لوگو ۲۱۹px (flex-shrink:0) در ظرف جا نمی‌شد؛
+   هدر-اکشن‌ها به چپِ منفی رانده می‌شدند و CTA تماس بریده می‌شد
+   (scrollW 334 > clientW 288@320، پوشیده پشت html{overflow-x:hidden}).
+   همان کلاسِ باگِ سرریز لپ‌تاپ. انتهای فایل: منبع-ترتیب بر تمام بلوک‌های موبایل. */
+@media (max-width: 360px) {
+  .brand-logo {
+    flex-shrink: 1;
+    min-width: 0;
+    padding-inline-end: 0.6rem;
+  }
+
+  .brand-logo-img {
+    height: 36px;
+    max-width: 150px;
+  }
+
+  .header-inner {
+    padding: 0 0.25rem;
+    gap: 0.5rem;
+  }
+}
+
+/* Mobile hero: intrinsic height; photo and copy never compete. */
+@media (max-width: 768px) {
+  .slider-container { height: auto; }
+  .slider-track { display: grid; height: auto; }
+  .slide-item {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
+    height: auto;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide-item > img {
+    transform: none;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    animation: none;
+  }
+  .slide-item.active img { animation: none; transform: none; }
+  .slide-overlay {
+    position: relative;
+    inset: auto;
+    flex: 1;
+    align-items: flex-start;
+    padding: 1rem 1rem 6rem;
+    background: var(--surface-900);
+  }
+  .slider-pause { bottom: 2.75rem; inset-inline-end: 1rem; }
+  .slide-content { padding-right: 0; }
+  .slide-content::before { display: none; }
+  .slide-title { font-size: var(--nk-fs-h3); line-height: 1.5; text-shadow: none; }
+  .slide-desc { display: block; overflow: visible; text-shadow: none; }
+  .slide-pill { display: none; }
+  .slide-price-box { margin-bottom: 0.75rem; }
+  @media (prefers-reduced-motion: reduce) {
+    .slide-overlay { padding-bottom: 3rem; }
+  }
+}

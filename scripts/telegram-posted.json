@@ -1,0 +1,45 @@
+[
+ {
+  "date": "2026-09-19",
+  "posts": [
+   {
+    "id": "intro",
+    "message_id": 2,
+    "pinned": true
+   },
+   {
+    "id": 1,
+    "message_id": 3
+   },
+   {
+    "id": 2,
+    "message_id": 4
+   },
+   {
+    "id": 3,
+    "message_id": 6
+   }
+  ]
+ },
+ {
+  "date": "2026-09-19-refresh",
+  "posts": [
+   {
+    "album": "xtrim-vx",
+    "message_id": 8
+   },
+   {
+    "album": "peugeot-207",
+    "message_id": 10
+   },
+   {
+    "album": "dena-plus",
+    "message_id": 12
+   },
+   {
+    "album": "plan-explainer",
+    "message_id": 14
+   }
+  ]
+ }
+]

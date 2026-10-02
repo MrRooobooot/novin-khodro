@@ -1,0 +1,15 @@
+.DS_Store
+.agents/**/screenshot_*.png
+assets-out/
+__pycache__/
+.hermes/secrets/
+.hermes/stitch/
+.serena/
+.hermes/admin/
+.hermes/price-history/*.db
+.hermes/price-history/*.db-journal
+.hermes/logs/
+.hermes/reports/
+.hermes/plans/
+data/
+deploy.env

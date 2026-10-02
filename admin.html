@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0B1220">
+  <title>پنل مدیریت موجودی | نوین خودرو</title>
+  <link rel="stylesheet" href="css/tokens.css?v=20260918r">
+  <style>
+    @font-face { font-family: 'Vazirmatn'; src: url('fonts/Vazirmatn-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Vazirmatn'; src: url('fonts/Vazirmatn-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+    :root {
+      /* R62: پالت فقط از css/tokens.css — هیچ رنگ خام تازه‌ای اینجا تعریف نمی‌شود */
+      --bg: var(--nk-bg); --surface: var(--nk-surface-1); --surface2: var(--nk-surface-2); --line: var(--nk-accent-hairline);
+      --gold: var(--nk-accent-bright); --gold-dark: var(--nk-accent); --fg: var(--nk-text); --muted: var(--nk-text-muted); --danger: #F87171;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: 'Vazirmatn', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.7; min-height: 100vh; }
+    button, input, textarea, select { font-family: inherit; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 16px 96px; }
+    header.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0 22px; border-bottom: 1px solid var(--line); margin-bottom: 22px; }
+    h1 { font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    h1 svg { color: var(--gold); }
+    .btn { border: 0; border-radius: 12px; padding: 10px 18px; min-height: 44px; font-weight: 700; font-size: .9rem; cursor: pointer; transition: .2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0B1220; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(217,119,6,.35); }
+    .btn-outline { background: transparent; border: 1.5px solid rgba(251,191,36,.5); color: var(--gold); }
+    .btn-ghost { background: rgba(148,163,184,.12); color: var(--fg); border: 1px solid rgba(148,163,184,.2); }
+    .btn-danger { background: transparent; border: 1px solid rgba(248,113,113,.4); color: var(--danger); }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; margin-bottom: 14px; }
+    .gate { max-width: 420px; margin: 12vh auto 0; }
+    .gate input { width: 100%; padding: 12px 14px; min-height: 48px; background: var(--surface2); border: 1px solid rgba(147,161,188,.25); border-radius: 12px; color: var(--fg); font-size: 1rem; margin: 14px 0; direction: ltr; text-align: center; letter-spacing: .2em; }
+    .row { display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center; }
+    .row img { width: 44px; height: 30px; object-fit: contain; background: var(--surface2); border-radius: 6px; }
+    .row .meta { font-size: .78rem; color: var(--muted); }
+    .price { color: var(--gold); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    dialog { border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 18px; padding: 0; width: min(640px, calc(100vw - 24px)); }
+    dialog::backdrop { background: rgba(11,18,32,.85); backdrop-filter: blur(4px); }
+    .dlg-head { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--line); font-weight: 700; }
+    form .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 18px 20px; }
+    label.f { display: flex; flex-direction: column; gap: 4px; font-size: .8rem; color: var(--muted); }
+    label.f.full { grid-column: 1 / -1; }
+    .grid input, .grid textarea { background: var(--surface2); border: 1px solid rgba(147,161,188,.25); border-radius: 10px; padding: 10px 12px; color: var(--fg); font-size: .9rem; min-height: 42px; }
+    .grid textarea { min-height: 96px; resize: vertical; line-height: 1.8; }
+    .grid input:focus, .grid textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+    .dlg-foot { display: flex; justify-content: space-between; gap: 10px; padding: 14px 20px; border-top: 1px solid var(--line); }
+    #toast { position: fixed; bottom: 24px; right: 24px; background: var(--surface2); border: 1px solid var(--line); color: var(--fg); padding: 12px 18px; border-radius: 12px; font-size: .88rem; opacity: 0; transform: translateY(8px); transition: .25s; pointer-events: none; z-index: 50; }
+    #toast.show { opacity: 1; transform: none; }
+    #toast.err { border-color: rgba(248,113,113,.5); color: var(--danger); }
+    .hidden { display: none !important; }
+    .bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 10px; flex-wrap: wrap; }
+    .dirty-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gold); display: inline-block; }
+    @media (max-width: 620px) { form .grid { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- گیت -->
+    <section id="gate" class="gate card" aria-labelledby="gateTitle">
+      <h1 id="gateTitle">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        ورود اپراتور
+      </h1>
+      <p style="color:var(--muted);font-size:.85rem">کلید دسترسی پنل را وارد کنید.</p>
+      <input type="password" id="gateToken" autocomplete="off" dir="ltr" aria-label="کلید پنل">
+      <button type="button" class="btn btn-gold" id="gateBtn" style="width:100%;justify-content:center">ورود</button>
+    </section>
+
+    <!-- پنل -->
+    <div id="panel" class="hidden">
+      <header class="top">
+        <h1>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35a1 1 0 0 0-.78-.38H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          پنل مدیریت موجودی
+        </h1>
+        <div style="display:flex;gap:8px">
+          <button type="button" class="btn btn-outline" id="addBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>
+            افزودن خودرو
+          </button>
+          <button type="button" class="btn btn-ghost" id="logoutBtn" title="خروج">خروج</button>
+        </div>
+      </header>
+
+      <div class="bar">
+        <p id="countLabel" style="color:var(--muted);font-size:.85rem"></p>
+        <button type="button" class="btn btn-gold" id="saveBtn" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+          ذخیره و انتشار <span id="dirtyDot" class="dirty-dot hidden"></span>
+        </button>
+      </div>
+      <div id="list"></div>
+
+      <!-- صندوق سرنخ: هر فرم فروش خودرو / استعلام اقساط که کاربر فرستاده -->
+      <section class="card" id="leadsCard" aria-labelledby="leadsTitle" style="margin-top:16px">
+        <div class="bar" style="margin-bottom:8px">
+          <h2 id="leadsTitle" style="font-size:1rem;margin:0">
+            صندوق سرنخ <span id="leadsCount" style="color:var(--muted);font-weight:400;font-size:.85rem"></span>
+          </h2>
+          <div style="display:flex;gap:8px">
+            <button type="button" class="btn btn-outline" id="leadsBtn">بارگذاری سرنخ‌ها</button>
+            <button type="button" class="btn btn-ghost" id="importBtn">ایمپورت گروهی</button>
+          </div>
+        </div>
+        <div id="leadsList" style="font-size:.85rem;color:var(--muted)">هنوز بارگذاری نشده. (لاگ سرور را با <code dir="ltr">bash scripts/fetch-access-logs.sh</code> بکشید.)</div>
+        <details id="importBox" style="margin-top:10px">
+          <summary style="cursor:pointer;color:var(--muted);font-size:.85rem">ایمپورت گروهی CSV/JSON (عکس اجباری)</summary>
+          <p style="color:var(--muted);font-size:.8rem;margin:8px 0">سرستون‌های فارسی پذیرفته می‌شود: عنوان، قیمت (۲٫۵ میلیارد / ۲۲۰۰ میلیون)، برند، سال، کارکرد، تصویر، امکانات (با ؛ جدا کنید).</p>
+          <textarea id="importText" rows="6" dir="ltr" style="width:100%;font-family:ui-monospace,monospace;font-size:.8rem" placeholder="عنوان,قیمت,برند,سال,کارکرد,تصویر"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button type="button" class="btn btn-gold" id="importGo">ایمپورت کن</button>
+            <span id="importResult" style="color:var(--muted);font-size:.8rem;align-self:center"></span>
+          </div>
+        </details>
+      </section>
+    </div>
+  </div>
+
+  <!-- فرم ویرایش -->
+  <dialog id="editor" aria-labelledby="edTitle">
+    <form id="edForm" autocomplete="off" name="nk-admin-editor">
+      <div class="dlg-head"><span id="edTitle">ویرایش خودرو</span>
+        <button type="button" class="btn btn-ghost" id="edClose" aria-label="بستن" style="min-height:36px;padding:6px 12px">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="grid">
+        <label class="f full">عنوان <input name="title" required maxlength="120"></label>
+        <label class="f">قیمت (تومان، عددی) <input name="price" inputmode="numeric" required></label>
+        <label class="f">سال مدل <input name="modelYear" placeholder="۱۴۰۳"></label>
+        <label class="f">برند (کلید فیلتر) <select name="brand"><option value="chery">اکستریم / مدیران خودرو</option><option value="hyundai">هیوندای</option><option value="ikco">ایران خودرو</option><option value="saipa">سایپا</option></select></label>
+        <label class="f">دسته <select name="category"><option value="chinese">چینی</option><option value="imported">وارداتی</option><option value="iranian">ایرانی</option></select></label>
+        <label class="f">رنگ بدنه <input name="color"></label>
+        <label class="f">کارکرد (کیلومتر، عددی) <input name="mileage" inputmode="numeric"></label>
+        <label class="f full">مسیر تصویر <input name="image" placeholder="images/cars/xtrim-vx.svg" required></label>
+        <label class="f full">رنگ کابین / تریم <input name="interiorColor"></label>
+        <label class="f">گیربکس <input name="gearbox"></label>
+        <label class="f">سوخت <input name="fuel"></label>
+        <label class="f full">موتور و مشخصات فنی <input name="engine"></label>
+        <label class="f">وضعیت بدنه <input name="bodyStatus"></label>
+        <label class="f">وضعیت شاسی <input name="chassisStatus"></label>
+        <label class="f">بیمه <input name="insuranceText"></label>
+        <label class="f">گارانتی <input name="warranty"></label>
+        <label class="f full">وضعیت سند <input name="documentStatus"></label>
+        <label class="f full">توضیحات <textarea name="description"></textarea></label>
+        <label class="f full">امکانات (هر خط یکی) <textarea name="features"></textarea></label>
+        <label class="f full" style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" name="isZero" style="min-height:auto;width:18px"> صفر کیلومتر (خشک)</label>
+      </div>
+      <div class="dlg-foot">
+        <button type="button" class="btn btn-danger" id="delBtn">حذف خودرو</button>
+        <div style="display:flex;gap:10px">
+          <button type="button" class="btn btn-ghost" id="cancelBtn">انصراف</button>
+          <button type="submit" class="btn btn-gold">تأیید تغییرات</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  (function () {
+    'use strict';
+    var API = '/admin-api';
+    var LS = 'nk_admin_token';
+    var cars = [], baseline = '[]', editIdx = -1;
+
+    function $(id) { return document.getElementById(id); }
+    function esc(s) { return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    var FA = '۰۱۲۳۴۵۶۷۸۹';
+    function fa(v) { return String(v).replace(/\d/g, function (x) { return FA[x]; }); }
+    function faPrice(n) { return fa(Number(n || 0).toLocaleString('en-US')).replace(/,/g, '٬'); }
+    function tok() { return sessionStorage.getItem(LS) || ''; }
+    function api(path, opts) {
+      opts = opts || {};
+      opts.headers = Object.assign({ 'Authorization': '***' + tok() }, opts.headers || {});
+      return fetch(path, opts).then(function (r) {
+        if (r.status === 401) { logout(); throw new Error('کلید نامعتبر است'); }
+        return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || r.status); return j; });
+      });
+    }
+    function toast(msg, isErr) {
+      var t = $('toast'); t.textContent = msg; t.className = 'show' + (isErr ? ' err' : '');
+      clearTimeout(t._h); t._h = setTimeout(function () { t.className = ''; }, 3500);
+    }
+    function logout() { sessionStorage.removeItem(LS); $('panel').classList.add('hidden'); $('gate').classList.remove('hidden'); }
+
+    function render() {
+      $('countLabel').textContent = fa(cars.length) + ' خودرو در نمایشگاه — ویرایش محلی تا زمان «ذخیره و انتشار»';
+      var dirty = JSON.stringify(cars) !== baseline;
+      $('saveBtn').disabled = !dirty;
+      $('dirtyDot').classList.toggle('hidden', !dirty);
+      $('list').innerHTML = cars.map(function (c, i) {
+        return '<div class="card row"><img src="' + esc(c.image) + '" alt="" width="44" height="30" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
+          '<div><button type="button" class="edit btn btn-ghost" data-i="' + i + '" style="border:0;background:none;color:var(--fg);font-size:.98rem;font-weight:700;padding:4px 0;min-height:32px">' + esc(c.title) + '</button>' +
+          '<div class="meta">' + esc(c.modelYear || '') + ' · ' + (c.isZero ? 'صفر' : 'کارکرده') + ' · ' + fa(c.mileage || 0) + ' کیلومتر</div></div>' +
+          '<span class="price">' + faPrice(c.price) + ' <span style="font-weight:400;font-size:.75rem;color:var(--muted)">تومان</span></span></div>';
+      }).join('');
+    }
+
+    function openEditor(i) {
+      editIdx = i;
+      $('edForm').reset(); // حذف auto-fill مرورگر — وگرنه dirty-check کاذب می‌شود
+      var f = $('edForm').elements, c = i >= 0 ? cars[i] : { id: 0, title: '', price: 0, modelYear: '۱۴۰۵', brand: 'ikco', category: 'iranian', color: '', mileage: 0, image: '', interiorColor: '', gearbox: '', fuel: '', engine: '', bodyStatus: '', chassisStatus: '', insuranceText: '', warranty: '', documentStatus: '', description: '', features: [], isZero: true };
+      $('edTitle').textContent = i >= 0 ? 'ویرایش: ' + c.title : 'خودروی جدید';
+      ['title','modelYear','color','image','interiorColor','gearbox','fuel','engine','bodyStatus','chassisStatus','insuranceText','warranty','documentStatus','description'].forEach(function (k) { f[k].value = c[k] || ''; });
+      f.price.value = c.price ? String(c.price) : '';
+      f.mileage.value = c.mileage != null ? String(c.mileage) : '0';
+      f.brand.value = c.brand || 'ikco'; f.category.value = c.category || 'iranian';
+      f.features.value = (c.features || []).join('\n');
+      f.isZero.checked = !!c.isZero;
+      $('delBtn').classList.toggle('hidden', i < 0);
+      $('editor').showModal();
+    }
+
+    $('edForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = e.target.elements, i = editIdx;
+      var price = parseInt(String(f.price.value).replace(/[^\d]/g, ''), 10);
+      if (!(price >= 10000000 && price <= 1000000000000)) return toast('قیمت باید بین ۱۰ میلیون تا ۱۰۰۰ میلیارد تومان باشد', true);
+      var base = i >= 0 ? Object.assign({}, cars[i]) : { id: Date.now() % 100000, badges: [{ text: 'کارشناسی شده', type: 'verified' }], gallery: [], inspectionSummary: 'کارشناسی شده رسمی', insuranceMonths: 0, badge: '', isFeatured: false };
+      base.title = f.title.value.trim(); base.price = price; base.modelYear = f.modelYear.value.trim();
+      base.brand = f.brand.value; base.category = f.category.value; base.color = f.color.value.trim();
+      base.mileage = parseInt(f.mileage.value, 10) || 0; base.isZero = f.isZero.checked;
+      base.mileageText = base.isZero ? 'صفر کیلومتر خشک' : fa(base.mileage) + ' کیلومتر';
+      base.image = f.image.value.trim(); base.interiorColor = f.interiorColor.value.trim();
+      base.gearbox = f.gearbox.value.trim(); base.fuel = f.fuel.value.trim(); base.engine = f.engine.value.trim();
+      base.bodyStatus = f.bodyStatus.value.trim(); base.chassisStatus = f.chassisStatus.value.trim();
+      base.insuranceText = f.insuranceText.value.trim(); base.warranty = f.warranty.value.trim();
+      base.documentStatus = f.documentStatus.value.trim(); base.description = f.description.value.trim();
+      base.features = f.features.value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+      if (!base.gallery || !base.gallery.length) base.gallery = [base.image];
+      if (i >= 0) cars[i] = base; else cars.push(base);
+      $('editor').close(); render();
+    });
+    $('delBtn').addEventListener('click', function () {
+      if (editIdx >= 0 && confirm('این خودرو از نمایشگاه حذف شود؟')) { cars.splice(editIdx, 1); $('editor').close(); render(); }
+    });
+    $('edClose').addEventListener('click', function () { $('editor').close(); });
+    $('cancelBtn').addEventListener('click', function () { $('editor').close(); });
+
+    $('list').addEventListener('click', function (e) {
+      var b = e.target.closest('.edit');
+      if (b) openEditor(+b.dataset.i);
+    });
+    $('addBtn').addEventListener('click', function () { openEditor(-1); });
+    $('saveBtn').addEventListener('click', function () {
+      $('saveBtn').disabled = true;
+      api(API + '/inventory', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cars: cars }) })
+        .then(function (j) { baseline = JSON.stringify(cars); render(); toast(fa(j.count) + ' خودرو منتشر شد'); })
+        .catch(function (e) { $('saveBtn').disabled = false; toast('خطا: ' + e.message, true); });
+    });
+    $('logoutBtn').addEventListener('click', logout);
+
+    // صندوق سرنخ: خواندن لاگ سرور (نیاز به fetch-access-logs.sh تازه)
+    function loadLeads() {
+      api(API + '/leads').then(function (j) {
+        var rows = (j.leads || []).map(function (l) {
+          return '<tr><td dir="ltr">' + esc(String(l.ts).slice(0, 16).replace('T', ' ')) + '</td>' +
+            '<td>' + esc(l.type === 'sell' ? 'فروش خودرو' : (l.type === 'calc' ? 'استعلام اقساط' : l.type)) + '</td>' +
+            '<td>' + esc(l.name === '-' && l.car !== '-' ? l.car : l.name) + '</td>' +
+            '<td dir="ltr"><a href="tel:' + esc(l.phone) + '">' + esc(l.phone) + '</a></td>' +
+            '<td>' + esc([l.value, l.place].filter(function (x) { return x && x !== '-'; }).join(' · ')) + '</td></tr>';
+        }).join('');
+        $('leadsCount').textContent = fa(j.count || 0) + ' مورد';
+        $('leadsList').innerHTML = rows
+          ? '<table style="width:100%;border-collapse:collapse"><thead><tr style="color:var(--muted)"><th>زمان</th><th>نوع</th><th>خودرو/نام</th><th>تماس</th><th>جزئیات</th></tr></thead><tbody>' + rows + '</tbody></table>'
+          : 'سرنخی ثبت نشده (یا لاگ سرور کشیده نشده است).';
+      }).catch(function (e) { toast('خطا: ' + e.message, true); });
+    }
+    $('leadsBtn').addEventListener('click', loadLeads);
+    $('importBtn').addEventListener('click', function () { $('importBox').open = true; $('importText').focus(); });
+    $('importGo').addEventListener('click', function () {
+      var text = $('importText').value.trim();
+      if (!text) return toast('متنی برای ایمپورت وارد نشده', true);
+      $('importResult').textContent = 'در حال ایمپورت…';
+      api(API + '/import', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: text }) })
+        .then(function (j) {
+          $('importResult').textContent = fa(j.added) + ' خودرو اضافه شد (کل: ' + fa(j.total) + ')';
+          if (j.errors && j.errors.length) toast(j.errors.slice(0, 3).join(' | '), true);
+          $('importText').value = '';
+          return api(API + '/inventory');
+        })
+        .then(function (j2) { cars = j2.cars; baseline = JSON.stringify(cars); render(); })
+        .catch(function (e) { $('importResult').textContent = ''; toast('خطا: ' + e.message, true); });
+    });
+
+    function boot() {
+      api(API + '/inventory').then(function (j) {
+        cars = j.cars; baseline = JSON.stringify(cars);
+        $('gate').classList.add('hidden'); $('panel').classList.remove('hidden'); render();
+      }).catch(function (e) { toast(e.message, true); });
+    }
+    $('gateBtn').addEventListener('click', function () {
+      sessionStorage.setItem(LS, $('gateToken').value.trim()); boot();
+    });
+    $('gateToken').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('gateBtn').click(); });
+
+    boot(); // لوکال = بدون گیت؛ در صورت 401 خودکار به گیت برمی‌گردد
+  })();
+  </script>
+</body>
+</html>

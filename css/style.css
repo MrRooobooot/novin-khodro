@@ -1,0 +1,3999 @@
+/* ==========================================================================
+   نمایشگاه اتومبیل نوین خودرو - سیستم طراحی مدرن، فوق‌العاده خوانا و دسترس‌پذیر
+   Ultra-Clean Accessible International Automotive Showroom Design System
+   ========================================================================== */
+
+/* فونت محلی وزیرمتن جهت بارگذاری فوق‌سریع و بدون وابستگی به اینترنت بین‌الملل */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../fonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../fonts/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../fonts/Vazirmatn-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ═══ پالت Titanium Automotive — طلایی متالیک (D2: تک‌اکسنت؛ آبی/قرمز/سبز حذف شد R67) ═══ */
+
+  /* سطوح تیره عمیق یکپارچه و لوکس (Full Dark Titanium) */
+  --surface-900: var(--nk-bg);
+  --surface-800: var(--nk-surface-1);
+  --surface-700: var(--nk-surface-2);
+  --line-on-dark: var(--nk-accent-hairline);
+  --text-on-dark: var(--nk-text);
+  --text-on-dark-muted: var(--nk-text-muted);
+
+  --bg-main: var(--nk-bg);
+  --bg-subtle: var(--nk-bg);
+  --bg-card: var(--nk-surface-1);
+  --bg-card-hover: var(--nk-surface-2);
+
+  --text-title: var(--nk-text);
+  --text-body: var(--nk-text-muted);
+  --text-muted: var(--nk-text-muted);
+  --text-light: var(--nk-text-muted);
+
+  --brand-whatsapp: #15803D; /* AA: white text 5.02:1 — استثنای معنایی (پین‌شده) */
+  --brand-whatsapp-bg: #f0fdf4;
+  /* R62: طلایی برند فقط از توکن مرکزی — یک طلایی در کل سایت (AA→AAA روی تیره) */
+  --brand-gold: var(--nk-accent-bright);
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --border-focus: #FCE04C; /* R67: حلقهٔ فوکوس سراسری طلایی (D2) */
+
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.55);
+  --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --container-width: 1240px;
+  --transition-smooth: opacity var(--nk-t-micro) var(--nk-ease-out), transform var(--nk-t-micro) var(--nk-ease-out), background-color var(--nk-t-micro) ease, box-shadow var(--nk-t-micro) ease, border-color var(--nk-t-micro) ease, color var(--nk-t-micro) ease;
+  --touch-target-min: 44px;
+}
+
+/* حلقه فوکوس یکپارچه برای ناوبری کیبورد (WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* ریست و پایه‌ها */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* پرش به محتوای اصلی - دسترس‌پذیری صفحه‌خوان و کیبورد */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  right: 1.5rem;
+  background: var(--surface-900);
+  color: #FCE04C;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  z-index: 9999;
+  border: 2px solid var(--border-focus);
+  transition: top var(--nk-t-micro) ease-in-out;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid var(--border-focus);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  direction: rtl;
+  /* R61 (WCAG 2.4.11): فوکوس کیبورد زیر هدر چسبان و نوار پایین موبایل پنهان نشود */
+  scroll-padding-top: 96px;
+  scroll-padding-bottom: 104px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-subtle);
+  color: var(--text-body);
+  line-height: var(--nk-lh-body);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
+a[href] {
+  cursor: pointer;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   ۱. هدر تیره شیشه‌ای Titanium (Site Header)
+   ========================================================================== */
+/* ══════════════════════════════════════════════════════════════════════════
+   R63 — هدر بازطراحی‌شده: لوکاپ لوگوی رسمی + شاین متالیک طلایی لوگو
+   ساختار: [لوگو + جداکنندهٔ طلایی] [ریل کپسولی ناوبری] [اکشن‌ها]
+   ══════════════════════════════════════════════════════════════════════════ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, rgba(16, 26, 46, 0.94) 0%, rgba(11, 18, 32, 0.90) 100%);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border-bottom: 1px solid rgba(233, 191, 50, 0.14);
+  box-shadow: 0 6px 28px -8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(241, 231, 129, 0.07);
+  transform: translateZ(0);
+  transition: background-color var(--nk-t-reveal) ease, box-shadow var(--nk-t-reveal) ease;
+}
+
+/* شاین متالیک طلایی لبهٔ پایین هدر (رنگ‌ها از گرادیان لوگو) */
+.site-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(to left, var(--brand-gold), var(--nk-gold-light) 34%, var(--nk-gold-deep) 72%, transparent 96%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  gap: 1rem; /* 2rem بود — سرریز افقی هدر در لپ‌تاپ 1280 */
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: var(--touch-target-min);
+  flex-shrink: 0;
+  text-decoration: none;
+  padding-inline-end: 1.15rem;
+  border-inline-end: 1px solid rgba(233, 191, 50, 0.16);
+  transition: transform var(--nk-t-micro) var(--nk-ease-out), opacity var(--nk-t-micro) ease;
+}
+
+.brand-logo:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+.brand-logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 240px;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 10px rgba(217, 161, 40, 0.30));
+  transition: filter var(--nk-t-micro) ease;
+}
+
+.brand-logo:hover .brand-logo-img {
+  filter: drop-shadow(0 4px 16px rgba(241, 231, 129, 0.45));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; /* 1.5rem بود — هدر 1333px در ظرف 1192 سرریز می‌کرد و CTA تماس را از لبه بیرون می‌انداخت */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link-item {
+  font-size: var(--nk-fs-xs);
+  font-weight: 700;
+  color: var(--text-on-dark);
+  padding: 0.5rem 0.15rem;
+  position: relative;
+  min-height: var(--touch-target-min);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+  transition: color var(--nk-t-micro) var(--nk-ease-out);
+}
+
+.nav-link-item:hover,
+.nav-link-item.active {
+  color: #FCE04C;
+}
+
+/* Stitch R: pill فعال طلایی متالیک در ناوبری — هم‌پالت با لوگوی رسمی (R63) */
+.nav-link-item.active {
+  background: var(--nk-gold-sheen);
+  color: #0B1220;
+  border: 1px solid rgba(241, 231, 129, 0.55);
+  padding: 0.5rem 1rem;
+  margin-inline-start: -0.75rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 16px -8px rgba(217, 161, 40, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.nav-link-item.inst-highlight,
+.mob-bar-btn.calc,
+.slide-installment-hint,
+.calculator-card,
+#installment-plan .calculator-card,
+.calc-results-box {
+  /* R47: محاسبه‌گر از UI زنده حذف شده — مارکآپ مرده فقط با یک اعلان خفه می‌شود */
+  display: none;
+}
+
+.nav-link-item.inst-highlight svg {
+  flex-shrink: 0;
+}
+
+.nav-link-item::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  right: 0;
+  width: 0;
+  height: 2.5px;
+  background: linear-gradient(to left, var(--brand-gold), var(--nk-gold-light) 60%, rgba(161, 130, 46, 0.35));
+  border-radius: 2px;
+  transition: width var(--nk-t-micro) var(--nk-ease-out);
+}
+
+.nav-link-item:hover::after,
+.nav-link-item.active::after {
+  width: 100%;
+}
+
+/* حلقه فوکوس طلایی هدر — اهداف لمسی و ناوبری کیبورد (Round 17, WCAG 2.4.7) */
+.brand-logo:focus-visible,
+.nav-link-item:focus-visible,
+.btn-header-call:focus-visible,
+.mobile-toggle:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* واحدهای ارتفاع دکمه — مقیاس یکسان ۴۴px در کل سایت */
+.btn-header-call,
+.btn-slide-primary,
+.btn-slide-call,
+.btn-show-details,
+.btn-whatsapp-inquire,
+.btn-apply-loan,
+.btn-calc-phone,
+.btn-submit-sell,
+.btn-modal-call,
+.btn-modal-whatsapp,
+.float-btn,
+.mob-bar-btn,
+.preset-pill-btn,
+.tenure-btn,
+.cat-pill,
+.app-nav-link {
+  height: 44px;
+  min-height: 44px;
+}
+
+.btn-header-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  /* قاعدهٔ primary-action: هدر CTA پرحجم نمی‌شود؛ طرح outline با مرز طلایی متالیک */
+  background: transparent;
+  color: var(--nk-gold-core);
+  padding: 0 1.25rem;
+  min-height: 44px;
+  border-radius: var(--radius-full);
+  font-weight: 900;
+  font-size: var(--nk-fs-sm);
+  border: 1.5px solid rgba(233, 191, 50, 0.6);
+  box-shadow: inset 0 0 0 0 rgba(233, 191, 50, 0), 0 4px 14px -10px rgba(217, 161, 40, 0.7);
+  transition: var(--transition-smooth);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-header-call:hover {
+  transform: translateY(-2px);
+  background: rgba(233, 191, 50, 0.12);
+  color: var(--nk-gold-light);
+  border-color: var(--nk-gold-light);
+  box-shadow: 0 10px 24px -12px rgba(233, 191, 50, 0.85), inset 0 1px 0 rgba(241, 231, 129, 0.18);
+}
+
+.btn-header-call svg {
+  stroke-width: 2.5;
+  color: currentColor;
+}
+
+.mobile-toggle {
+  display: none;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  border-radius: var(--radius-md);
+  color: var(--text-on-dark);
+  background: transparent;
+  border: 1px solid rgba(233, 191, 50, 0.22);
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--nk-t-micro) ease, border-color var(--nk-t-micro) ease, color var(--nk-t-micro) ease;
+}
+
+.mobile-toggle:hover {
+  background: rgba(233, 191, 50, 0.12);
+  border-color: var(--nk-gold-core);
+  color: var(--nk-gold-light);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   R63 — ریل کپسولی ناوبری (فقط دسکتاپ؛ در ≤1200px کشوی موبایل حاکم است)
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1201px) {
+  /* R72: گرادیان شیشهٔ ریل مرده بود (R68 در همین media با background:none خنثی می‌کرد) — حذف */
+  .nav-links {
+    gap: 0.25rem;
+    padding: 0.3rem 0.4rem;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(233, 191, 50, 0.14);
+  }
+
+  .nav-link-item::after {
+    right: 0.6rem;
+    left: 0.6rem;
+    width: auto;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform var(--nk-t-micro) var(--nk-ease-out);
+  }
+
+  .nav-link-item:hover::after,
+  .nav-link-item.active::after {
+    width: auto;
+    transform: scaleX(1);
+  }
+
+  .nav-link-item.active::after {
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   ۲. اسلایدر سینمایی هیرو با کین‌برنز (Cinematic Hero Slider)
+   ========================================================================== */
+.hero-slider-section {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 0 2rem;
+  min-height: 520px;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-hover);
+  background: var(--surface-900);
+  border: 1px solid var(--line-on-dark);
+  isolation: isolate;
+  contain: paint;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider-pause { display: none; }
+}
+
+.slider-pause {
+  position: absolute;
+  inset-inline-end: 1rem;
+  bottom: 0.25rem;
+  z-index: 5;
+  min-height: 44px;
+  padding: 0 0.75rem;
+  color: var(--text-on-dark);
+  background: var(--surface-900);
+  border: 1px solid var(--line-on-dark);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: var(--nk-fs-xs);
+}
+
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-item {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out, visibility 0.7s ease-in-out;
+  transform: scale(1.02);
+}
+
+.slide-item.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.slide-item img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* کین‌برنز ظریف — فقط transform (GPU-safe) */
+.slide-item.active img {
+  animation: kenburns 8s cubic-bezier(0.25, 0.6, 0.35, 1) forwards;
+}
+
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+/* گرادیان پوشش: سمت راست (محل قرارگیری متن در RTL) تیره‌تر است تا کنتراست متن روی تصویر تضمین شود */
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgba(11, 18, 32, 0.96) 0%, rgba(11, 18, 32, 0.85) 45%, rgba(11, 18, 32, 0.25) 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 4.5rem;
+}
+
+.slide-content {
+  max-width: 620px;
+  color: #fff;
+  position: relative;
+  padding-right: 1.4rem;
+}
+
+/* خط مویی طلایی گرادیانی — لهجه برند طلایی روی بلوک کپشن هیرو */
+.slide-content::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 3.4rem;
+  bottom: auto;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, #FCE04C 0%, var(--brand-gold) 40%, rgba(233, 191, 50, 0.12) 100%);
+  box-shadow: 0 0 12px rgba(252, 224, 76, 0.35);
+}
+
+.slide-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(233, 191, 50, 0.22);
+  border: 1px solid rgba(252, 224, 76, 0.5);
+  color: #F1E781;
+  padding: 0.45rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(6px);
+}
+
+.slide-pill svg {
+  flex-shrink: 0;
+}
+
+.slide-title {
+  color: #ffffff;
+  font-size: var(--nk-fs-display);
+  font-weight: 900;
+  line-height: var(--nk-lh-tight);
+  margin-bottom: 0.85rem;
+  letter-spacing: 0; /* خط فارسی: ردگیری منفی حروف چسبان را می‌شکند */
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.slide-desc {
+  font-size: var(--nk-fs-body);
+  color: #f8fafc;
+  margin-bottom: 1.5rem;
+  line-height: var(--nk-lh-body);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+  max-width: 580px;
+}
+
+.slide-price-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+  background: rgba(11, 18, 32, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(252, 224, 76, 0.35);
+  text-align: right;
+}
+
+.slide-price-label {
+  font-size: var(--nk-fs-xs);
+  color: var(--text-on-dark-muted);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.slide-price {
+  font-size: var(--nk-fs-subhead);
+  font-weight: 900;
+  color: #FCE04C;
+  font-variant-numeric: tabular-nums;
+}
+
+.slide-installment-hint {
+  display: none;
+}
+
+.slide-installment-hint-hidden {
+  border-right: 1.5px solid rgba(255, 255, 255, 0.2);
+  padding-right: 1.25rem;
+  text-align: right;
+}
+
+.slide-installment-hint span {
+  font-size: var(--nk-fs-xs);
+  color: var(--text-on-dark-muted);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.slide-installment-hint strong {
+  font-size: var(--nk-fs-lg);
+  font-weight: 900;
+  color: #34D399;
+}
+
+.slide-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-bottom: 2.25rem; /* R53: جا برای دات‌های اسلایدر */
+}
+
+.btn-slide-primary {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  font-weight: 900;
+  padding: 0 1.8rem;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(233, 191, 50, 0.45);
+  transition: var(--transition-smooth);
+}
+
+.btn-slide-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(252, 224, 76, 0.55);
+  color: #0B1220;
+}
+
+/* حلقه فوکوس طلایی روی CTAهای اسلاید (WCAG 2.4.7) */
+.btn-slide-primary:focus-visible,
+.btn-slide-call:focus-visible {
+  outline: 3px solid #FCE04C;
+  outline-offset: 3px;
+}
+
+.btn-slide-call {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-weight: 800;
+  padding: 0 1.6rem;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-sm);
+  border: 1.5px solid rgba(252, 224, 76, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-smooth);
+}
+
+.btn-slide-call:hover {
+  background: rgba(252, 224, 76, 0.15);
+  border-color: var(--brand-gold);
+  transform: translateY(-2px);
+  color: #FCE04C;
+}
+
+/* دکمه‌های ناوبری اسلایدر */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  min-height: 46px;
+  border-radius: var(--radius-full);
+  background: rgba(11, 18, 32, 0.75);
+  border: 1px solid rgba(252, 224, 76, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FCE04C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-subtle);
+}
+
+.slider-arrow:hover {
+  background: rgba(233, 191, 50, 0.35);
+  border-color: var(--brand-gold);
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.slider-arrow:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.slider-arrow.prev { right: 2rem; }
+.slider-arrow.next { left: 2rem; }
+
+/* نشانگرهای نقطه‌ای */
+/* فاصله کافی بین نقطه‌ها تا نواحی لمسی گسترش‌یافته همپوشانی نکنند */
+.slider-dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 2.1rem;   /* R56: pitch ≈ 45.6px → تارگت لمسی 44px بدون هم‌پوشانی */
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-full);
+}
+
+.slider-dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  min-height: 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  padding: 0;
+}
+
+/* گسترش ناحیه لمسی نقطه‌ها تا حداقل ۴۴ پیکسل (WCAG 2.5.5) بدون تغییر ظاهر بصری */
+/* ::after expands the hit-area to 36x36 (dot is 12px) — WCAG 2.5.8 AA (24px min).
+   44px would overlap at mobile dot-pitch 25.6px and make taps ambiguous. */
+.slider-dot::after {
+  content: "";
+  position: absolute;
+  inset: -16px;   /* R56: ناحیهٔ لمسی 44×44 (قبلاً 36) — pitch موبایل به ۴۹px افزایش یافت */
+  border-radius: var(--radius-full);
+}
+
+.slider-dot.active {
+  width: 34px;
+  background: #FCE04C;
+}
+
+/* حلقه فوکوس طلایی روی کنترل‌های اسلایدر — دسترس‌پذیری کیبورد (WCAG 2.4.7) */
+.slider-arrow:focus-visible,
+.slider-dot:focus-visible {
+  outline: 3px solid #FCE04C;
+  outline-offset: 3px;
+}
+
+/* احترام به تنظیم کاهش حرکت (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    /* Zero duration avoids transitioning inherited visibility on every child. */
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   ۳. بخش فیلتر و جستجوی خودروها (Filter Bar)
+   ========================================================================== */
+.showroom-section {
+  padding: 2.5rem 0 5.5rem;
+}
+
+.section-head-minimal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-title-large {
+  font-size: var(--nk-fs-h2);
+  font-weight: 900;
+  color: var(--text-title);
+  line-height: var(--nk-lh-tight);
+}
+
+.section-title-large span {
+  font-size: var(--nk-fs-sm);
+  color: var(--text-muted);
+  font-weight: 600;
+  display: block;
+  margin-top: 0.4rem;
+}
+
+.filter-bar-clean {
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-subtle);
+  margin-bottom: 2.5rem;
+  /* R36: هویت طلایی لوکس سکشن اقساط — خط تاکیدی گرادیان طلایی روی لبه‌ی بالای فیلتربار */
+  position: relative;
+  overflow: hidden;
+}
+
+/* R36: نوار تاکید طلایی — همان گرادیان سکشن اقساط (FBBF24→D97706)، RTL از راست به چپ */
+.filter-bar-clean::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(to left, #FCE04C, var(--brand-gold) 45%, transparent 90%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.filter-row-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.clean-search {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.clean-search svg {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  pointer-events: none;
+}
+
+.clean-search input {
+  width: 100%;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  /* R54: RTL — آیکون جستجو سمت راست است؛ فضا از inline-start رزرو می‌شود */
+  padding-block: 0;
+  padding-inline-start: 2.9rem;
+  padding-inline-end: 1rem;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  background: var(--surface-900);
+  font-size: var(--nk-fs-sm);
+  font-weight: 600;
+  color: #F1F5F9;
+  transition: var(--transition-smooth);
+}
+
+.clean-search input:focus {
+  background: var(--surface-800);
+  border-color: var(--brand-gold);
+  box-shadow: 0 0 0 4px rgba(233, 191, 50, 0.15);
+}
+
+.clean-select-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.clean-select {
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: 0 1.25rem;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: var(--nk-fs-sm);
+  color: var(--text-title);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.clean-select:focus {
+  background: #fff;
+  border-color: var(--brand-gold);
+}
+
+/* ═══ R41: پالایش کنترل‌های کاتالوگ — حلقه طلایی جستجو، سلکت سفارشی تیره با فلش طلایی، خط تاکیدی تیتر سکشن ═══ */
+
+/* R41: حلقه فوکوس طلایی روی فیلد جستجو (focus + focus-visible برای کیبورد) */
+.clean-search input:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+/* R41: سلکت سفارشی — سطح تیره برند، فلش طلایی سمت چپ (RTL)، بدون ظاهر پیش‌فرض مرورگر */
+.clean-select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--surface-800);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23FBBF24' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 0.9rem center;
+  color: var(--text-on-dark);
+  border-color: rgba(252, 224, 76, 0.28);
+  padding: 0 1.25rem 0 2.6rem;
+  font-weight: 700;
+}
+
+.clean-select:hover {
+  border-color: var(--brand-gold);
+  box-shadow: 0 0 0 3px rgba(233, 191, 50, 0.12);
+}
+
+.clean-select:focus {
+  background-color: var(--surface-800);
+  color: var(--text-on-dark);
+  border-color: var(--brand-gold);
+  box-shadow: 0 0 0 4px rgba(233, 191, 50, 0.18);
+}
+
+.clean-select:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+.clean-select option {
+  background: var(--surface-800);
+  color: var(--text-on-dark);
+}
+
+/* R41: خط تاکیدی مویی طلایی بالای تیتر سکشن کاتالوگ — همگرا با اکسنت‌های گرادیان سایر سکشن‌ها */
+.section-title-large {
+  position: relative;
+}
+
+.section-title-large::after {
+  content: '';
+  position: absolute;
+  top: -0.9rem;
+  right: 0;
+  width: 56px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(to left, var(--brand-gold), rgba(233, 191, 50, 0.25));
+  pointer-events: none;
+}
+
+/* R41: گارد کاهش حرکت — حذف ترنزیشن کنترل‌های کاتالوگ */
+@media (prefers-reduced-motion: reduce) {
+  .clean-search input,
+  .clean-select {
+    transition: none;
+  }
+
+  .clean-select:hover,
+  .clean-select:focus {
+    box-shadow: none;
+  }
+}
+
+.filter-categories-pills {
+  display: flex;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(252, 224, 76, 0.3) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-categories-pills::-webkit-scrollbar {
+  display: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   R62 — افشای تدریجی فیلترها (progressive disclosure)
+   پیش‌فرض: جستجو + دسته‌ها. برند و ترتیب داخل یک دیسکلوژر ۴۴pxی.
+   ══════════════════════════════════════════════════════════════════════════ */
+.filters-more {
+  position: relative;
+}
+
+.filters-more-summary {
+  list-style: none;
+  cursor: pointer;
+  min-height: var(--touch-target-min);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0 1.15rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(252, 224, 76, 0.28);
+  background: #111827;
+  color: #F1F5F9;
+  font-size: var(--nk-fs-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: var(--transition-smooth);
+}
+
+.filters-more-summary::-webkit-details-marker {
+  display: none;
+}
+
+.filters-more-summary:hover {
+  color: var(--brand-gold);
+  border-color: var(--brand-gold);
+}
+
+.filters-more[open] > .filters-more-summary {
+  color: var(--brand-gold);
+  border-color: var(--brand-gold);
+}
+
+.filters-more-summary:focus-visible {
+  outline: 3px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+.filters-more .clean-select-group {
+  position: absolute;
+  z-index: var(--nk-z-modal);
+  top: calc(100% + 0.5rem);
+  inset-inline-start: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 240px;
+  padding: 0.75rem;
+  background: var(--nk-surface-1);
+  border: 1px solid var(--nk-border-strong);
+  border-radius: var(--nk-r-md);
+  box-shadow: var(--nk-e2);
+}
+
+/* بستن صریح محتوا در حالت جمع — برخی نگارش‌های مرورگر child را با position:absolute رندر می‌کنند */
+.filters-more:not([open]) .clean-select-group {
+  display: none;
+}
+
+.filters-more[open] .clean-select-group {
+  display: flex;
+}
+
+.cat-pill {
+  min-height: var(--touch-target-min);
+  min-width: 44px;
+  /* R61: پیل‌ها فشرده نشوند؛ مجموعه افقی اسکرول شود (چیپ با لیبل بریده = نقض compact-label-overflow) */
+  flex: 0 0 auto;
+  padding: 0 1.35rem;
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-sm);
+  font-weight: 700;
+  /* RTL-safe: فاصله‌گذاری حروف منفی برای متن فارسی ممنوع */
+  letter-spacing: 0;
+  color: #F1F5F9;
+  /* سطح تیره ظریف — سیستم برند طلایی-روی-تیره */
+  background: #111827;
+  border: 1.5px solid rgba(252, 224, 76, 0.28);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.cat-pill:hover {
+  background: #1F2937;
+  color: #FCE04C;
+  border-color: var(--brand-gold);
+  /* R36: لیف ظریف پیل — هماهنگ با کارت‌ها، بدون ری‌لی‌اوت */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(233, 191, 50, 0.25);
+}
+
+.cat-pill.active {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  border-color: var(--brand-gold);
+  box-shadow: 0 4px 14px rgba(233, 191, 50, 0.35);
+}
+
+/* حلقه فوکوس طلایی برای ناوبری کیبورد روی دکمه‌های فیلتر */
+.cat-pill:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+/* Round-30: احترام به کاهش حرکت برای ترنزیشن پیل‌های فیلتر (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  .cat-pill,
+  .cat-pill:hover,
+  .cat-pill.active {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   ۴. کارت‌های خودرو — تنفس‌دار، سلسله‌مراتب‌مند (Breathable Showroom Cards)
+   ========================================================================== */
+.cars-grid-immersive {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.car-card-modern {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  /* فقط transform/opacity روی GPU — بدون ری‌لی‌اوت */
+  transition: transform 0.3s var(--nk-ease-out), box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+/* layer دائمی ۴۶ کارت حذف شد؛ GPU فقط هنگام hover */
+.car-card-modern:hover {
+  will-change: transform;
+}
+
+.car-card-modern:hover,
+.car-card-modern:focus-within {
+  transform: translateZ(0) translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--brand-gold), 0 0 16px rgba(252, 224, 76, 0.2);
+  border-color: var(--brand-gold);
+}
+
+/* R36: خط تاکید طلایی بالای کارت هنگام هاور — همان زبان لوکس سکشن اقساط */
+.car-card-modern::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(to left, #FCE04C, var(--brand-gold) 45%, transparent 90%);
+  opacity: 0;
+  transition: opacity var(--nk-t-reveal) ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.car-card-modern:hover::after,
+.car-card-modern:focus-within::after {
+  opacity: 1;
+}
+
+/* R36: احترام به کاهش حرکت — بدون فید خط طلایی کارت (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  .car-card-modern::after {
+    transition: none;
+  }
+}
+
+/* حلقه فوکوس طلایی برای ناوبری کیبورد روی کارت‌های کاتالوگ */
+.car-card-modern:focus-within {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+.car-card-modern a:focus-visible,
+.car-card-modern button:focus-visible {
+  outline: 3px solid var(--brand-gold);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  background: #0B1220;
+  overflow: hidden;
+}
+
+.card-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--nk-t-micro) var(--nk-ease-out);
+}
+
+.car-card-modern:hover .card-media img {
+  transform: scale(1.06);
+}
+
+.card-badges-cluster {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: 2;
+}
+
+.inspection-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-xs);
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* R53: تک‌اکسنت — بج‌ها دو تن‌اند: طلایی (سیگنال اصلی) و خنثی/گلاس */
+.inspection-tag-badge.badge-verified,
+.inspection-tag-badge.badge-clean {
+  background: #FCE04C;
+  color: #0B1220;
+}
+
+.inspection-tag-badge.badge-zero,
+.inspection-tag-badge.badge-insurance {
+  background: rgba(11, 18, 32, 0.82);
+  color: #F8FAFC;
+  border: 1px solid var(--nk-border-strong);
+}
+
+.card-tag-badge {
+  display: none; /* جایگزین‌شده با بج‌های اعتبارسنجی روی media */
+}
+
+.card-info {
+  padding: 1.35rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+}
+
+.card-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+  min-height: 44px;
+}
+
+.card-car-name {
+  font-size: var(--nk-fs-lg);
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.3;
+  flex: 1;
+}
+
+/* لینک صفحه اختصاصی خودرو روی کارت — رنگ عنوان حفظ می‌شود */
+.card-car-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-car-link:hover,
+.card-car-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.card-car-year {
+  background: var(--surface-900);
+  color: var(--brand-gold);
+  font-size: var(--nk-fs-xs);
+  font-weight: 800;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(252, 224, 76, 0.25);
+  white-space: nowrap;
+}
+
+.card-specs-minimal {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1.1rem;
+  opacity: 0.95;
+}
+
+/* R35: ستون‌های مشخصات — هم‌عرض RTL، ارقام جدولی، کنتراست بهتر مقدارها */
+.spec-col {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.spec-icon {
+  color: var(--brand-gold);
+  display: inline-flex;
+  margin-bottom: 0.15rem;
+  background: rgba(233, 191, 50, 0.12);
+  border: 1px solid rgba(233, 191, 50, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem;
+}
+
+.spec-title {
+  font-size: var(--nk-fs-xs);
+  color: #94A3B8;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.spec-val {
+  font-size: var(--nk-fs-sm);
+  font-weight: 700;
+  color: #F1F5F9;
+  font-variant-numeric: tabular-nums;
+  max-width: 100%;
+  white-space: normal;      /* R53: متن بریده نشود */
+  overflow: visible;
+  text-overflow: clip;
+  line-height: 1.5;
+}
+
+.card-status-row {
+  display: none; /* ادغام در مودال کارشناسی — کاهش شلوغی کارت */
+}
+
+.card-installment-banner {
+  display: none; /* قیمت اقساطی در مودال و محاسبه‌گر — کاهش شلوغی کارت */
+}
+
+.card-bottom-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.card-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 0.9rem;
+  border-top: 2px solid var(--brand-gold);
+  border-image: linear-gradient(to left, var(--brand-gold), transparent 70%) 1;
+  transition: border-color var(--nk-t-micro) ease, box-shadow var(--nk-t-micro) ease;
+}
+
+.car-card-modern:hover .card-price-row,
+.car-card-modern:focus-within .card-price-row {
+  box-shadow: 0 1px 0 0 var(--brand-gold);
+}
+
+.price-row-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.price-val {
+  font-size: var(--nk-fs-subhead);
+  font-weight: 900;
+  color: #FCE04C;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.price-unit {
+  font-size: var(--nk-fs-xs);
+  font-weight: 700;
+  color: #94A3B8;
+  white-space: nowrap;
+}
+
+.action-buttons-group {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 0.65rem;
+}
+
+/* R56: جایگاه ثابت دکمه‌ها — ردیف اول (لینک پروفایل/دانشنامه) در همهٔ کارت‌ها یکسان */
+.action-buttons-group > .ikco-profile-link { grid-row: 1; grid-column: 1 / -1; }
+.action-buttons-group > .btn-show-details { grid-row: 2; grid-column: 1; }
+.action-buttons-group > .btn-whatsapp-inquire { grid-row: 2; grid-column: 2; }
+
+/* R33: CTA اصلی کارت — گرادیان طلایی برند با متن تیره (کنتراست AAA روی گرادیان) */
+.btn-show-details {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: 0 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  letter-spacing: 0;
+  border: 1px solid rgba(233, 191, 50, 0.6);
+  box-shadow: 0 2px 8px rgba(233, 191, 50, 0.22);
+  transition: var(--transition-smooth);
+}
+
+.btn-show-details:hover {
+  background: linear-gradient(135deg, #FCD34D 0%, #A1822E 100%);
+  color: #0B1220;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px -4px rgba(233, 191, 50, 0.42), 0 0 0 1px var(--brand-gold);
+}
+
+.btn-show-details:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(233, 191, 50, 0.3);
+}
+
+.btn-show-details:focus-visible {
+  outline: 3px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+/* R33: CTA ثانویه کارت (واتساپ) — شیشه‌ای با ته‌رنگ طلایی، بدون آبی/سبز پس‌زمینه */
+.btn-whatsapp-inquire {
+  background: rgba(252, 224, 76, 0.10);
+  color: var(--brand-gold);
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: 0 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  letter-spacing: 0;
+  border: 1.5px solid rgba(233, 191, 50, 0.45);
+  transition: var(--transition-smooth);
+}
+
+.btn-whatsapp-inquire:hover {
+  background: rgba(233, 191, 50, 0.18);
+  color: #FCE04C;
+  border-color: var(--brand-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -6px rgba(233, 191, 50, 0.35);
+}
+
+.btn-whatsapp-inquire:active {
+  transform: translateY(0);
+}
+
+.btn-whatsapp-inquire:focus-visible {
+  outline: 3px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+/* R33: حالت تعلیق هاور روی ردیف قیمت کارت — فقط transform/box-shadow */
+.action-buttons-group .btn-show-details:hover,
+.action-buttons-group .btn-whatsapp-inquire:hover {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-show-details,
+  .btn-show-details:hover,
+  .btn-whatsapp-inquire,
+  .btn-whatsapp-inquire:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   R62 — کاتالوگ آرام: یک عدد، یک اقدام
+   کارت ۳ لایه می‌شود: تصویر → نام + قیمت (قهرمان) → خط متادیتای ساکت
+   هیچ عنصری از DOM حذف نشده؛ فقط سلسله‌مراتب بصری بازچینش شده است.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ۱) بج‌ها: حداکثر دو نشان روی کارت، در یک ردیف — بقیه در مودال کارشناسی */
+.card-badges-cluster {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+  z-index: 2;
+}
+
+.card-badges-cluster .inspection-tag-badge:nth-child(n + 3) {
+  display: none;
+}
+
+.inspection-tag-badge {
+  padding: 0.26rem 0.68rem;
+  font-weight: 700;
+}
+
+/* ۲) مشخصات: سه ستون آیکون‌دار → یک خط متادیتای آرام */
+.card-specs-minimal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 1.1rem;
+  padding: 0;
+  border-top: 0;
+  border-bottom: 0;
+  margin-bottom: 0.85rem;
+  opacity: 1;
+}
+
+.spec-col {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  flex: 0 0 auto;
+  min-width: 0;
+  text-align: start;
+}
+
+/* آیکون‌های تزئینی کنار متن (قاعده icon-context) — حذف از کارت */
+.spec-icon {
+  display: none;
+}
+
+.spec-title {
+  font-size: var(--nk-fs-xs);
+  color: var(--nk-text-muted);
+  font-weight: 400;
+  margin: 0;
+}
+
+.spec-val {
+  font-size: var(--nk-fs-xs);
+  color: var(--nk-text);
+  font-weight: 700;
+}
+
+/* ۳) قیمت: تنها عدد قهرمان کارت */
+.card-price-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+}
+
+.price-val {
+  font-size: clamp(1.5rem, 2.4vw, 1.95rem);
+  line-height: 1.2;
+}
+
+/* ۴) اقدام‌ها: یک CTA اصلی + دو اقدام آیکونی ۴۴px در همان ردیف (قاعده primary-action) */
+.action-buttons-group {
+  grid-template-columns: 1fr 44px 44px;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+/* متن دکمه‌های آیکونی پنهان می‌شود؛ نام دسترس‌پذیر از aria-label می‌آید */
+.action-buttons-group > .btn-whatsapp-inquire,
+.action-buttons-group > .ikco-profile-link {
+  grid-row: 1;
+  width: 44px;
+  min-width: 44px;
+  padding: 0;
+  font-size: 0;
+  gap: 0;
+}
+
+.action-buttons-group > .btn-whatsapp-inquire {
+  grid-column: 3;
+}
+
+.action-buttons-group > .ikco-profile-link {
+  grid-column: 2;
+}
+
+.empty-inventory-box {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background: var(--surface-800);
+  border-radius: var(--radius-lg);
+  border: 1.5px dashed var(--line-on-dark);
+}
+
+.empty-inventory-box h3 {
+  font-size: var(--nk-fs-lg);
+  font-weight: 900;
+  color: var(--text-title);
+  margin-bottom: 0.6rem;
+}
+
+.empty-inventory-box p {
+  color: var(--text-muted);
+}
+
+/* راند ۳۹: شمارنده مرئی نتایج موجودی — چیپ طلایی هماهنگ با پالت برند */
+.catalog-results-row {
+  display: flex;
+  justify-content: flex-start;
+  margin: -1.25rem 0 1.25rem;
+}
+
+.catalog-results-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  color: #FCE04C;
+  background: rgba(252, 224, 76, 0.12);
+  border: 1.5px solid rgba(252, 224, 76, 0.35);
+}
+
+/* راند ۳۹: دکمه بازنشانی فیلترها در حالت خالی کاتالوگ */
+.btn-reset-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  min-height: 44px;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  color: #0B1220;
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  border: 1.5px solid var(--brand-gold);
+  box-shadow: 0 4px 14px rgba(233, 191, 50, 0.3);
+  transition: var(--transition-smooth);
+}
+
+.btn-reset-filters:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(233, 191, 50, 0.4);
+}
+
+.btn-reset-filters:focus-visible {
+  outline: 2px solid #FCE04C;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   ۵. بخش فروش فوری خودرو به نوین خودرو (Sell Car Banner)
+   ========================================================================== */
+.sell-section-wrapper {
+  padding: 1.5rem 0 3.5rem;
+}
+
+.sell-banner-box {
+  padding: var(--nk-section) var(--nk-s7);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line-on-dark);
+  box-shadow: var(--shadow-hover);
+  position: relative;
+  overflow: hidden;
+}
+
+.sell-banner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.sell-banner-text h2 {
+  font-size: var(--nk-fs-h2);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 1.25rem;
+}
+
+.sell-banner-text p {
+  font-size: var(--nk-fs-body);
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.sell-points-row {
+  display: grid;                              /* R57: ۳ آیتم در یک ردیف (قبلاً ۲+۱ بی‌تقارن) */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem 1.5rem;
+  flex-wrap: wrap;
+}
+
+.sell-point-item strong {
+  display: block;
+  font-size: var(--nk-fs-h3);
+  color: #FCE04C;
+  font-weight: 800;
+}
+
+.sell-point-item span {
+  font-size: var(--nk-fs-xs);
+  color: var(--text-on-dark-muted);
+}
+
+.sell-mini-form {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+}
+
+.sell-mini-form h3 {
+  font-size: var(--nk-fs-lg);
+  font-weight: 900;
+  margin-bottom: 1.25rem;
+}
+
+.form-grid-dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.minimal-field {
+  margin-bottom: 1.1rem;
+}
+
+.minimal-field label {
+  display: block;
+  font-size: var(--nk-fs-sm);
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 0.4rem;
+}
+
+.req-star {
+  color: #f87171;
+}
+
+.minimal-field input {
+  width: 100%;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: 0 1rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-size: var(--nk-fs-sm);
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.minimal-field input::placeholder {
+  color: #94A3B8;   /* R57: کنتراست AA روی فیلد تیره (قبلاً پیش‌فرض مرورگر) */
+  opacity: 1;
+}
+
+.minimal-field input:focus {
+  border-color: var(--brand-gold);
+  box-shadow: 0 0 0 4px rgba(233, 191, 50, 0.22);
+}
+
+.btn-submit-sell {
+  width: 100%;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: 0 1rem;
+  background: var(--brand-gold);
+  color: #0B1220;
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-body);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 16px rgba(233, 191, 50, 0.4);
+  border: 1px solid var(--brand-gold);
+}
+
+.btn-submit-sell:hover {
+  background: var(--brand-gold);
+  color: #0B1220;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(233, 191, 50, 0.5);
+}
+
+.btn-submit-sell:hover {
+  background: var(--brand-gold);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* ==========================================================================
+   ۶. بخش سوالات متداول (FAQ Accordion)
+   ========================================================================== */
+.faq-section {
+  padding: var(--nk-section) 0;
+}
+
+.faq-header-center {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.faq-header-center h2 {
+  font-size: var(--nk-fs-h2);
+  font-weight: 900;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.faq-header-center p {
+  color: #94A3B8;
+  font-size: var(--nk-fs-body);
+}
+
+.faq-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark);
+  border-radius: var(--radius-md);
+  margin-bottom: 0.65rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+}
+
+.faq-item:hover {
+  border-color: rgba(233, 191, 50, 0.55);
+  box-shadow: 0 4px 18px rgba(233, 191, 50, 0.10);
+}
+
+.faq-item:focus-within {
+  border-color: var(--brand-gold);
+}
+
+.faq-item.open {
+  border-color: var(--brand-gold);
+  box-shadow: 0 6px 22px rgba(233, 191, 50, 0.14);
+}
+
+.faq-question {
+  width: 100%;
+  min-height: 56px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+  font-size: var(--nk-fs-body);
+  font-weight: 800;
+  color: var(--text-title);
+  background: var(--surface-800);
+}
+
+.faq-question:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: -3px;
+  border-radius: var(--radius-md);
+}
+
+.faq-question svg {
+  transition: transform 0.3s ease;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-question svg {
+  transform: rotate(180deg);
+  color: #FCE04C;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 1.5rem;
+  color: #CBD5E1;
+  font-size: var(--nk-fs-sm);
+  line-height: 1.85;
+  background: var(--surface-900);
+}
+
+.faq-item.open .faq-answer {
+  max-height: 400px;
+  padding: 1.1rem 1.5rem 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item,
+  .faq-question,
+  .faq-question svg,
+  .faq-answer {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   ۷. آدرس، نقشه و اطلاعات تماس (Contact & Location)
+   ========================================================================== */
+.contact-section-clean {
+  position: relative;
+  padding: var(--nk-section) 0;
+  background: #101A2E; /* R67: سطح تخت (حذف گرادیان تزئینی) */
+  border-top: none;
+  color: #F9FAFB;
+}
+
+/* R24: لبه مویی طلایی بالای بخش تماس */
+.contact-section-clean::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(252, 224, 76, 1) 0%, rgba(233, 191, 50, 1) 100%);
+  pointer-events: none;
+}
+
+.contact-layout-clean {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+}
+
+.contact-details-box h3 {
+  font-size: var(--nk-fs-subhead);
+  font-weight: 900;
+  color: #FCE04C;
+  margin-bottom: 1.25rem;
+}
+
+.contact-desc {
+  color: #D1D5DB;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.contact-row-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(252, 224, 76, 0.18);
+}
+
+.contact-icon-bubble {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(252, 224, 76, 0.12);
+  color: #FCE04C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(252, 224, 76, 0.35);
+}
+
+.contact-row-item h4 {
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  color: #F9FAFB;
+  margin-bottom: 0.25rem;
+}
+
+.contact-row-item p, .contact-row-item a {
+  font-size: var(--nk-fs-sm);
+  color: #E5E7EB;
+  font-weight: 600;
+}
+
+.phone-link-large {
+  font-size: var(--nk-fs-lg);
+  font-weight: 900;
+  color: #FCE04C;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target-min);
+  line-height: var(--touch-target-min);
+  border-radius: var(--radius-md);
+  padding: 0 0.5rem;
+  transition: color var(--nk-t-micro) ease, text-decoration-color var(--nk-t-micro) ease;
+}
+
+.phone-link-large:hover {
+  color: #FCD34D;
+  text-decoration: underline;
+  text-decoration-color: #E9BF32;
+  text-underline-offset: 4px;
+}
+
+.phone-link-large:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+.contact-map-clean {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(252, 224, 76, 0.25);
+  box-shadow: 0 8px 24px rgba(233, 191, 50, 0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+/* R57: نقشهٔ استاتیک self-hosted — معکوس‌سازی رنگ برای هم‌خوانی با تم تیره */
+
+/* R57: پین نمایشگاه روی نقشهٔ استاتیک (نمونهٔ دقیق مرکز برش) */
+.map-pin {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 55%;
+  transform: translate(-50%, -95%);
+  color: #FCE04C;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.55));
+  z-index: 3;
+  pointer-events: none;
+}
+
+.clean-map-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.map-credit {
+  position: absolute;
+  inset-block-end: 6px;
+  inset-inline-start: 8px;
+  font-size: 11px;
+  color: rgba(226, 232, 240, 0.75);
+  background: rgba(6, 10, 18, 0.55);
+  padding: 2px 6px;
+  border-radius: 6px;
+  z-index: 3;
+}
+
+.clean-map-frame { position: relative; }
+
+.clean-map-frame {
+  /* R: نقشه باید ارتفاع باکس (کشیده‌شده به هم‌ترازی با ستون اطلاعات) را پر کند — رفع فضای مرده */
+  flex: 1 1 auto;
+  min-height: 340px;
+  width: 100%;
+}
+
+.map-buttons-strip {
+  padding: 1.25rem;
+  background: #111827;
+  border-top: 1px solid rgba(252, 224, 76, 0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.map-strip-label {
+  font-size: var(--nk-fs-sm);
+  color: #D1D5DB;
+  font-weight: 700;
+}
+
+.nav-links-cluster {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.app-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0 1.1rem;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  background: rgba(252, 224, 76, 0.10);
+  border: 1px solid rgba(252, 224, 76, 0.35);
+  color: #FCE04C;
+  transition: background var(--nk-t-micro) ease, color var(--nk-t-micro) ease, border-color var(--nk-t-micro) ease;
+}
+
+.app-nav-link:hover {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #111827;
+  border-color: #E9BF32;
+}
+
+.app-nav-link:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+/* ── R31: پولیش طلایی بخش تماس + نوار CTA ────────────────────────────── */
+
+/* هاور طلایی روی ردیف‌های اطلاعات تماس */
+.contact-row-item {
+  transition: background var(--nk-t-micro) ease, border-color var(--nk-t-micro) ease;
+  border-radius: var(--radius-md);
+  padding-inline: 0.5rem;
+}
+
+.contact-row-item:hover {
+  background: rgba(252, 224, 76, 0.06);
+  border-bottom-color: rgba(233, 191, 50, 0.55);
+}
+
+.contact-row-item:hover .contact-icon-bubble {
+  background: #FCE04C;
+  color: #0B1220;
+  border-color: #E9BF32;
+}
+
+.contact-icon-bubble {
+  transition: background var(--nk-t-micro) ease, color var(--nk-t-micro) ease, border-color var(--nk-t-micro) ease;
+}
+
+/* لینک‌های مسیریابی: حلقه فوکوس با پس‌زمینه گرم‌تر */
+.app-nav-link:hover {
+  box-shadow: 0 0 0 3px rgba(252, 224, 76, 0.22);
+}
+
+/* نوار CTA: گشایش اعتبار خرید اقساطی با تماس */
+.cta-band {
+  position: relative;
+  background: #0d1421; /* R67: سطح تخت (حذف گرادیان تزئینی) */
+  padding: 2.25rem 0;
+}
+
+.cta-band::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(252, 224, 76, 0) 0%, #FCE04C 50%, rgba(233, 191, 50, 0) 100%);
+  pointer-events: none;
+}
+
+.cta-band-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.cta-band-title {
+  font-size: var(--nk-fs-lg);
+  font-weight: 900;
+  color: #FCE04C;
+  margin-bottom: 0.35rem;
+}
+
+.cta-band-desc {
+  color: #D1D5DB;
+  font-size: var(--nk-fs-sm);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.cta-band-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cta-band-phone,
+.cta-band-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 900;
+  font-size: var(--nk-fs-body);
+  transition: background var(--nk-t-micro) ease, color var(--nk-t-micro) ease, border-color var(--nk-t-micro) ease, box-shadow var(--nk-t-micro) ease;
+}
+
+.cta-band-phone {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  border: 1px solid #E9BF32;
+}
+
+.cta-band-phone:hover {
+  box-shadow: 0 0 0 3px rgba(252, 224, 76, 0.28);
+  filter: brightness(1.06);
+}
+
+.cta-band-wa {
+  background: rgba(252, 224, 76, 0.10);
+  color: #FCE04C;
+  border: 1px solid rgba(252, 224, 76, 0.35);
+}
+
+.cta-band-wa:hover {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  border-color: #E9BF32;
+}
+
+.cta-band-phone:focus-visible,
+.cta-band-wa:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-row-item,
+  .contact-row-item:hover,
+  .contact-icon-bubble,
+  .app-nav-link,
+  .cta-band-phone,
+  .cta-band-wa {
+    transition: none;
+  }
+
+  .cta-band-phone:hover {
+    filter: none;
+  }
+}
+
+/* ==========================================================================
+   ۸. دکمه‌های شناور اقدام سریع در دسکتاپ (Floating Action Hub)
+   ========================================================================== */
+.floating-action-hub {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.float-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  height: 56px;
+  width: 56px;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: var(--nk-fs-sm);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+  color: #0B1220;
+}
+
+/* دایره‌ایِ آیکون‌محور: لبه چپ صفحه می‌ماند و روی ستون چهارم گرید نمی‌افتد؛ لیبل با hover باز می‌شود */
+.float-btn .float-label {
+  position: absolute;
+  inset-inline-start: calc(100% + 10px);
+  white-space: nowrap;
+  background: var(--surface-800, #101A2E);
+  color: var(--foreground, #E8ECF5);
+  border: 1px solid var(--line-on-dark, rgba(252, 224, 76, 0.15));
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.9rem;
+  font-size: var(--nk-fs-xs);
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  transition: opacity var(--nk-t-micro) ease, transform var(--nk-t-micro) ease;
+}
+
+.float-btn:hover .float-label,
+.float-btn:focus-visible .float-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.float-btn.whatsapp {
+  background: var(--brand-gold);
+}
+
+.float-btn.call {
+  background: transparent;
+  border: 1.5px solid var(--brand-gold);
+  color: var(--brand-gold);
+}
+
+.float-btn:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+
+/* ==========================================================================
+   ۹. نوار اقدام چسبان پایین صفحه ویژه موبایل (Sticky Mobile Bottom Bar)
+   ========================================================================== */
+.mobile-bottom-bar {
+  display: none; /* در دسکتاپ مخفی و در مدیا کوئری موبایل فعال می‌شود */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(11, 18, 32, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line-on-dark, rgba(252, 224, 76, 0.15));
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.45);
+  padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom, 0));
+  gap: 0.5rem;
+}
+
+.mob-bar-btn {
+  flex: 1;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+/* پالت واحد تیتانیوم/طلایی — تماس=اصلی (صداترجیح فروش high-ticket)، واتساپ=اوتلاین، ماشین‌حساب=خنثی */
+.mob-bar-btn.call {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  font-weight: 900;
+}
+
+.mob-bar-btn.whatsapp {
+  background: transparent;
+  border: 1.5px solid rgba(252, 224, 76, 0.55);
+  color: var(--brand-gold);
+}
+
+.mob-bar-btn.calc {
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--text-on-dark, #E2E8F0);
+  border: 1.5px solid rgba(148, 163, 184, 0.25);
+}
+
+.mob-bar-btn:active {
+  transform: scale(0.97);
+}
+
+/* ==========================================================================
+   ۱۰. فوتر تیره Titanium
+   ========================================================================== */
+.footer-clean {
+  background: #0b1220; /* R67: سطح تخت · R72: هالهٔ رادیال تزئینی حذف شد */
+  color: #fff;
+  padding: 5rem 0 2.75rem;
+  border-top: none;
+  position: relative;
+}
+
+/* خط مویی طلایی لبه بالای فوتر — گرادیان کامل با درخشش ملایم */
+.footer-clean::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(to left, #FCE04C, var(--brand-gold) 30%, rgba(233, 191, 50, 0.45) 60%, transparent 95%);
+  pointer-events: none;
+}
+
+/* هاله طلایی محو زیر خط مویی */
+.footer-clean::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 0;
+  left: 0;
+  height: 18px;
+  background: none;
+  pointer-events: none;
+}
+
+.footer-grid-clean {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr 1.3fr;
+  gap: 3.5rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand-title {
+  font-size: var(--nk-fs-lg);
+  font-weight: 900;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+  color: #f8fafc;
+}
+
+.footer-brand-desc {
+  color: #94a3b8;
+  font-size: var(--nk-fs-sm);
+  line-height: 1.9;
+  max-width: 320px;
+}
+
+/* ردیف شبکه‌های اجتماعی / تماس */
+.footer-social-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+.footer-social-btn {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  transition: color var(--nk-t-micro) ease, background-color var(--nk-t-micro) ease, border-color var(--nk-t-micro) ease, transform var(--nk-t-micro) ease;
+}
+
+.footer-social-btn:hover {
+  color: var(--brand-gold);
+  background: rgba(233, 191, 50, 0.12);
+  border-color: rgba(233, 191, 50, 0.45);
+  transform: translateY(-2px);
+}
+
+.footer-social-btn:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+.footer-col-title {
+  font-size: var(--nk-fs-body);
+  font-weight: 800;
+  margin-bottom: 1.1rem;
+  color: #f8fafc;
+  position: relative;
+  padding-bottom: 0.55rem;
+}
+
+/* خط مویی طلایی کوتاه زیر عنوان هر ستون */
+.footer-col-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 34px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(to left, var(--brand-gold), rgba(233, 191, 50, 0.25));
+}
+
+.footer-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: var(--nk-fs-sm);
+  color: #cbd5e1;
+}
+
+.footer-nav-list a {
+  padding: 0.65rem 0;
+  display: inline-block;
+  position: relative;
+  transition: color var(--nk-t-micro) ease, transform var(--nk-t-micro) ease;
+}
+
+/* خط زیرین طلایی که در RTL از راست رشد می‌کند */
+.footer-nav-list a::after {
+  content: "";
+  position: absolute;
+  bottom: 0.35rem;
+  right: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--brand-gold);
+  border-radius: 2px;
+  transition: width var(--nk-t-micro) ease;
+}
+
+.footer-nav-list a:hover {
+  color: var(--brand-gold);
+  transform: translateX(-3px); /* حرکت ملایم به سمت داخل در RTL */
+}
+
+.footer-nav-list a:hover::after {
+  width: 100%;
+}
+
+.footer-nav-list a:focus-visible,
+.footer-phone-link:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.footer-phone-link {
+  font-weight: 800;
+  color: var(--brand-gold);
+  transition: color var(--nk-t-micro) ease;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px; /* WCAG 2.5.8 — لینک تلفن ۲۱px ارتفاع داشت */
+}
+
+.footer-phone-link:hover {
+  color: #fbbf24;
+}
+
+.footer-phone-text, .footer-address-text, .footer-time-text {
+  color: #cbd5e1;
+  font-size: var(--nk-fs-sm);
+  margin-bottom: 0.6rem;
+  padding: 0.45rem 0.6rem;
+  margin-right: -0.6rem;
+  border-radius: 10px;
+  transition: color var(--nk-t-micro) ease, background-color var(--nk-t-micro) ease;
+}
+
+/* هاور ردیف‌های تماس — سطح طلایی ملایم (RTL) */
+.footer-nap > p:hover {
+  color: #f1f5f9;
+  background: rgba(233, 191, 50, 0.08);
+}
+
+.footer-nap > p:focus-within {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+.footer-bottom-clean {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #94a3b8;
+  font-size: var(--nk-fs-xs);
+  letter-spacing: 0.01em;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.footer-bottom-clean p {
+  margin: 0;
+}
+
+/* بلوک NAP تماس با سمانتیک <address> — هم‌خوان با JSON-LD */
+.footer-nap {
+  font-style: normal;
+}
+
+.footer-phone-text svg,
+.footer-address-text svg,
+.footer-time-text svg {
+  color: var(--brand-gold);
+  vertical-align: -3px;
+  margin-left: 0.4rem;
+}
+
+/* دکمه بازگشت به بالا — استایل طلایی */
+.footer-back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  color: var(--brand-gold);
+  background: rgba(233, 191, 50, 0.12);
+  border: 1px solid rgba(233, 191, 50, 0.45);
+  font-weight: 800;
+  font-size: var(--nk-fs-sm);
+  transition: color var(--nk-t-micro) ease, background-color var(--nk-t-micro) ease, border-color var(--nk-t-micro) ease;
+}
+
+.footer-back-top:hover {
+  color: #0b1220;
+  background: linear-gradient(135deg, #FCE04C, #E9BF32);
+  border-color: #FCE04C;
+}
+
+.footer-back-top:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-social-btn,
+  .footer-nav-list a,
+  .footer-nav-list a::after,
+  .footer-back-top,
+  .footer-phone-text,
+  .footer-address-text,
+  .footer-time-text {
+    transition: none;
+  }
+
+  .footer-social-btn:hover,
+  .footer-nav-list a:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   ۱۱. مودال جامع جزئیات و شناسنامه کارشناسی خودرو (Car Details Modal)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(11, 18, 32, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* Visibility must switch synchronously before JS moves focus. */
+  transition: opacity var(--nk-t-reveal) ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark);
+  border-radius: var(--radius-lg);
+  max-width: 820px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow-modal);
+  transform: translateY(24px) scale(0.98);
+  opacity: 0;
+  transition: transform var(--nk-t-micro) var(--nk-ease-out), opacity var(--nk-t-micro) ease;
+  padding: 2.25rem;
+  scrollbar-width: thin;
+  color: #F1F5F9;
+  /* لبه طلایی مویی در بالای پنل مودال — هماهنگ با سیستم برند */
+}
+
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to left, var(--brand-gold), #FCE04C 45%, var(--brand-gold));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  pointer-events: none;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-title);
+  z-index: 10;
+  transition: var(--transition-smooth);
+}
+
+.modal-close:hover {
+  background: var(--brand-gold);
+  color: #fff;
+}
+
+.modal-close:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+.modal-gallery-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.modal-main-img-box {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  background: #0f172a;
+  position: relative;
+}
+
+.modal-main-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-img-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-xs);
+  font-weight: 800;
+}
+
+.modal-thumbs-row {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+/* راند ۳۷: شمارنده تصویر مودال (پیل طلایی) */
+.modal-img-counter {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(233, 191, 50, 0.22);
+  color: #F1E781;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-xs);
+  font-weight: 800;
+  letter-spacing: 0;
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+/* راند ۳۷: دکمه‌های ناوبری فلشی تصاویر مودال */
+.modal-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-full);
+  background: rgba(15, 23, 42, 0.72);
+  color: #F1E781;
+  cursor: pointer;
+  z-index: 2;
+  transition: var(--transition-smooth);
+}
+
+.modal-nav-arrow:hover:not(:disabled) {
+  background: var(--brand-gold);
+  color: #FCE04C;
+}
+
+.modal-nav-arrow:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+.modal-nav-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.modal-nav-prev {
+  right: 0.75rem;
+}
+
+.modal-nav-next {
+  left: 0.75rem;
+}
+
+/* راند ۳۷: ترنزیشن محو/لغزش تصویر اصلی مودال */
+.modal-img-fade {
+  animation: modalImgFade var(--nk-t-micro) ease;
+}
+
+@keyframes modalImgFade {
+  from {
+    opacity: 0.35;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-img-fade {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.modal-thumb-btn {
+  width: 80px;
+  height: 60px;
+  min-height: var(--touch-target-min);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 0;
+  background: #0f172a;
+  transition: var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.modal-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-thumb-btn.active {
+  border-color: var(--brand-gold);
+}
+
+.modal-thumb-btn:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+.modal-header-info {
+  margin-bottom: 1.5rem;
+}
+
+.modal-car-title {
+  font-size: var(--nk-fs-h2);
+  font-weight: 900;
+  color: var(--brand-gold);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.modal-year-tag {
+  font-size: var(--nk-fs-body);
+  color: #FCE04C;
+  background: var(--bg-subtle);
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.modal-price-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.modal-cash-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.price-strip-label {
+  font-size: var(--nk-fs-sm);
+  color: var(--text-muted);
+}
+
+.modal-cash-price strong {
+  font-size: var(--nk-fs-subhead);
+  font-weight: 900;
+  color: #FCE04C;
+}
+
+.modal-inst-pill {
+  background: rgba(252, 224, 76, 0.10);
+  color: #F1E781;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* شناسنامه کارشناسی رسمی نوین خودرو */
+.inspection-certificate-card {
+  background: var(--surface-800);
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(5, 150, 105, 0.4);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.cert-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #d1fae5;
+}
+
+.cert-seal {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(252, 224, 76, 0.12);
+  color: #FCE04C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cert-header h4 {
+  font-size: var(--nk-fs-h3);
+  font-weight: 900;
+  color: #FCE04C;
+}
+
+.cert-header p {
+  font-size: var(--nk-fs-xs);
+  color: var(--text-muted);
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+  font-size: var(--nk-fs-sm);
+}
+
+.cert-item {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-subtle);
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.cert-label {
+  font-size: var(--nk-fs-xs);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.cert-val {
+  color: var(--brand-gold);
+  font-weight: 800;
+}
+
+.modal-section-box {
+  margin-bottom: 1.5rem;
+}
+
+.modal-sub-heading {
+  font-size: var(--nk-fs-h3);
+  font-weight: 900;
+  margin-bottom: 0.85rem;
+  color: var(--text-title);
+}
+
+.modal-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.modal-feature-item {
+  background: var(--surface-900);
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--nk-fs-sm);
+  font-weight: 700;
+  color: #CBD5E1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-desc-box {
+  background: var(--surface-900);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  color: #CBD5E1;
+  font-size: var(--nk-fs-sm);
+  line-height: 1.8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-footer-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-modal-call {
+  flex: 1;
+  min-width: 220px;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 900;
+  font-size: var(--nk-fs-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-smooth);
+}
+
+.btn-modal-call:hover {
+  box-shadow: 0 0 0 3px rgba(252, 224, 76, 0.28);
+  filter: brightness(1.06);
+  color: #0B1220;
+}
+
+.btn-modal-whatsapp {
+  flex: 1;
+  min-width: 220px;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  background: var(--brand-whatsapp);
+  color: #fff;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 900;
+  font-size: var(--nk-fs-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-smooth);
+}
+
+.btn-modal-whatsapp:hover {
+  background: #15803d;
+}
+
+/* ==========================================================================
+   ۱۲. اعلان‌های توست کاربرپسند (Toast Notifications)
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  top: 1.5rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+  width: 90%;
+  max-width: 440px;
+}
+
+.toast {
+  background: var(--surface-900);
+  color: #fff;
+  padding: 0.9rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-sm);
+  font-weight: 700;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--line-on-dark);
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: opacity var(--nk-t-reveal) ease, transform var(--nk-t-reveal) ease;
+  pointer-events: auto;
+  text-align: center;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.success {
+  background: #047857;
+}
+
+.toast.error {
+  background: #b91c1c;
+}
+
+/* ==========================================================================
+   ۱۳. بخش چرا ما / خدمات و آمار (Round 26 — طلایی برند)
+   ========================================================================== */
+.why-us-section {
+  padding: var(--nk-section) 0;
+  background: var(--canvas, #0B1220);
+  position: relative;
+}
+
+.why-us-section::before {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin: 0 auto 2rem;
+  background: none;
+  border-radius: 999px;
+}
+
+.why-us-head {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.why-us-head h2 {
+  font-size: var(--nk-fs-subhead);
+  font-weight: 800;
+  color: #FCE04C;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0;
+}
+
+.why-us-card p {
+  color: #CBD5E1;
+  font-size: var(--nk-fs-sm);
+  line-height: var(--nk-lh-body);
+  margin: 0;
+}
+
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+  margin-bottom: 2.25rem;
+}
+
+.why-us-card {
+  background: #111827;
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.08));
+  border-radius: var(--radius-lg, 14px);
+  padding: 1.6rem 1.35rem;
+  text-align: center;
+  position: relative;
+  transition: border-color var(--nk-t-reveal) ease, transform var(--nk-t-reveal) ease, box-shadow var(--nk-t-reveal) ease;
+}
+
+.why-us-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  border-radius: 999px 999px 0 0;
+  background: none;
+  opacity: 0;
+  transition: opacity var(--nk-t-reveal) ease;
+}
+
+.why-us-card:hover {
+  border-color: rgba(252, 224, 76, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(252,224,76,0.25), 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.why-us-card:hover::before {
+  opacity: 1;
+}
+
+/* R38: گوشه‌های طلایی ظریف کارت (تیک‌های گوشه ۱۴ پیکسلی، محو در هاور) */
+.why-us-card::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  pointer-events: none;
+  opacity: 0.55;
+  transition: opacity var(--nk-t-reveal) ease;
+  background:
+    linear-gradient(rgba(252, 224, 76, 0.55), rgba(252, 224, 76, 0.55)) top right / 14px 1px no-repeat,
+    linear-gradient(rgba(252, 224, 76, 0.55), rgba(252, 224, 76, 0.55)) top right / 1px 14px no-repeat,
+    linear-gradient(rgba(233, 191, 50, 0.45), rgba(233, 191, 50, 0.45)) bottom left / 14px 1px no-repeat,
+    linear-gradient(rgba(233, 191, 50, 0.45), rgba(233, 191, 50, 0.45)) bottom left / 1px 14px no-repeat;
+}
+
+.why-us-card:hover::after {
+  opacity: 1;
+}
+
+.why-us-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  min-width: 44px;
+  min-height: 44px;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  color: #FCE04C;
+  background: rgba(233, 191, 50, 0.14);
+  border: 1px solid rgba(252, 224, 76, 0.35);
+  transition: border-color var(--nk-t-reveal) ease, box-shadow var(--nk-t-reveal) ease;
+}
+
+/* R38: حلقه طلایی بیرونی ظریف نشان در هاور کارت */
+.why-us-card:hover .why-us-icon,
+.why-us-trust-card:hover .why-us-icon {
+  border-color: rgba(252, 224, 76, 0.65);
+  box-shadow: 0 0 0 3px rgba(252, 224, 76, 0.16), 0 0 18px rgba(252, 224, 76, 0.12);
+}
+
+.why-us-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.why-us-card h3 {
+  font-size: var(--nk-fs-body);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0;
+}
+
+.why-us-card p {
+  font-size: var(--nk-fs-sm);
+  color: var(--text-light, #94A3B8);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* کارت‌های اعتماد سه‌ستونه — راند ۲۸ (توکن‌های دوتم: طلایی روی سطوح تیره) */
+.why-us-trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+  margin-bottom: 2.25rem;
+}
+
+.why-us-trust-card {
+  background: #111827;
+  border: 1px solid rgba(252, 224, 76, 0.25);
+  border-radius: var(--radius-lg, 14px);
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--nk-t-reveal) ease, transform var(--nk-t-reveal) ease, box-shadow var(--nk-t-reveal) ease;
+}
+
+.why-us-trust-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, #FCE04C 0%, #E9BF32 60%, rgba(233,191,50,0) 100%);
+}
+
+.why-us-trust-card:hover {
+  border-color: rgba(252, 224, 76, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(252,224,76,0.25), 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.why-us-trust-card h3 {
+  font-size: var(--nk-fs-body);
+  font-weight: 800;
+  color: #FCE04C;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0;
+}
+
+.why-us-trust-card p {
+  font-size: var(--nk-fs-sm);
+  color: var(--text-light, #CBD5E1);
+  line-height: var(--nk-lh-body);
+  margin: 0 0 0.4rem;
+}
+
+.why-us-trust-card .trust-hours {
+  display: inline-block;
+  font-size: var(--nk-fs-xs);
+  font-weight: 700;
+  color: var(--brand-gold, #E9BF32);
+  min-height: 44px;
+  line-height: 1.6;
+}
+
+.why-us-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+  padding: 1.5rem 1.25rem;
+  background: #111827;
+  border: 1px solid rgba(252, 224, 76, 0.25);
+  border-radius: var(--radius-lg, 14px);
+  position: relative;
+  overflow: hidden;
+}
+
+.why-us-stats::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, #FCE04C 0%, #E9BF32 60%, rgba(233,191,50,0) 100%);
+}
+
+.why-us-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  text-align: center;
+  min-height: 44px;
+}
+
+.why-us-stat .stat-icon {
+  color: #FCE04C;                    /* قفل تست R26-4 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;                       /* R56: هم‌سبک نشان دایره‌ای کارت‌های بالای همین بخش */
+  height: 44px;
+  margin-bottom: 0.55rem;
+  border-radius: 50%;
+  background: rgba(233, 191, 50, 0.14);
+  border: 1px solid rgba(252, 224, 76, 0.28);
+}
+
+.why-us-stat .stat-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.why-us-stat strong {
+  color: #FCE04C;
+  display: block;                    /* R56: خط شاخص جدا از توضیح */
+  font-size: var(--nk-fs-h3);
+  font-weight: 900;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.why-us-stat span:last-child {
+  color: var(--text-light, #94A3B8);
+  font-size: var(--nk-fs-xs);
+  line-height: 1.6;
+  max-width: 30ch;                   /* R56: توضیح کوتاه، خوانا */
+}
+
+/* R38: خطوط مویی طلایی میان سه آمار */
+.why-us-stat + .why-us-stat {
+  border-inline-start: 1px solid rgba(252, 224, 76, 0.18);
+  padding-inline-start: 1.1rem;
+}
+
+/* دسترس‌پذیری فوکوس — حلقه طلایی (WCAG 2.4.7) */
+.why-us-card:focus-within,
+.why-us-trust-card:focus-within,
+.why-us-card a:focus-visible,
+.why-us-trust-card a:focus-visible,
+.why-us-stat a:focus-visible {
+  outline: 2px solid var(--brand-gold, #E9BF32);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-us-card,
+  .why-us-card::before,
+  .why-us-card::after,
+  .why-us-icon,
+  .why-us-trust-card,
+  .why-us-trust-card::before {
+    transition: none;
+  }
+
+  .why-us-card:hover,
+  .why-us-trust-card:hover {
+    transform: none;
+  }
+
+  .why-us-card:hover .why-us-icon,
+  .why-us-trust-card:hover .why-us-icon {
+    box-shadow: none;
+  }
+}
+
+/* واکنش‌گرایی — ردیف کارت‌ها در تبلت */
+@media (max-width: 1024px) {
+  .why-us-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .why-us-grid,
+  .why-us-trust,
+  .why-us-stats {
+    grid-template-columns: 1fr;
+  }
+
+  /* R38: در ستون واحد، جداکننده‌ها افقی می‌شوند */
+  .why-us-stat + .why-us-stat {
+    border-inline-start: none;
+    padding-inline-start: 0;
+    border-top: 1px solid rgba(252, 224, 76, 0.18);
+    padding-top: 1rem;
+  }
+}
+
+/* ==========================================================================
+   بخش چگونه کار می‌کند — راند ۳۲ (چهار گام، نشان‌های طلایی شماره‌دار RTL)
+   ========================================================================== */
+.how-it-works-section {
+  padding: var(--nk-section) 0;
+  background: var(--canvas, #0B1220);
+  position: relative;
+}
+
+.how-it-works-section::before {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin: 0 0 2rem;      /* R56: بدون وسط‌چین */
+  margin-inline-start: max(1.5rem, calc((100% - var(--container-width)) / 2 + 1.5rem));
+  background: linear-gradient(90deg, #FCE04C 0%, #E9BF32 100%);
+  border-radius: 999px;
+}
+
+.how-it-works-head {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.how-it-works-head h2 {
+  font-size: var(--nk-fs-subhead);
+  font-weight: 800;
+  color: #FCE04C;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0;
+}
+
+.how-it-works-head p {
+  color: var(--text-light, #94A3B8);
+  font-size: var(--nk-fs-sm);
+  margin: 0;
+}
+
+.how-it-works-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* خط اتصال تایم‌لاین — پشت کارت‌ها */
+.how-it-works-steps::before {
+  content: '';
+  position: absolute;
+  top: 58px;              /* R56: مرکز عمودی نشان‌های شماره گام (اندازه‌گیری روی live) */
+  right: 9.6%;           /* R56: از مرکز نشان گام ۱ تا مرکز نشان گام ۴ */
+  left: 14.3%;
+  z-index: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(233, 191, 50, 0.15) 0%, rgba(252, 224, 76, 0.55) 50%, rgba(233, 191, 50, 0.15) 100%);
+  pointer-events: none;
+}
+
+/* R56: کارت‌ها بالای خط تایم‌لاین */
+.how-it-works-steps > .how-step-card { position: relative; z-index: 1; }
+
+.how-step-card {
+  background: #111827;
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.08));
+  border-radius: var(--radius-lg, 14px);
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  transition: border-color var(--nk-t-reveal) ease, transform var(--nk-t-reveal) ease, box-shadow var(--nk-t-reveal) ease;
+}
+
+.how-step-card:hover {
+  border-color: rgba(252, 224, 76, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(252, 224, 76, 0.25), 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.how-step-card:focus-within {
+  outline: 2px solid var(--brand-gold, #FCE04C);
+  outline-offset: 3px;
+}
+
+.how-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  min-width: 2.4rem;
+  margin-bottom: 0.9rem;
+  border-radius: var(--radius-full, 999px);
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  font-size: var(--nk-fs-body);
+  font-weight: 900;
+  letter-spacing: 0;
+  box-shadow: 0 2px 6px rgba(233, 191, 50, 0.35);
+}
+
+.how-step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  min-width: 44px;
+  min-height: 44px;
+  margin: 0 auto 0.9rem;
+  border-radius: 50%;
+  color: #FCE04C;
+  background: rgba(233, 191, 50, 0.14);
+  border: 1px solid rgba(252, 224, 76, 0.35);
+}
+
+.how-step-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.how-step-card h3 {
+  font-size: var(--nk-fs-body);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0;
+}
+
+.how-step-card p {
+  font-size: var(--nk-fs-sm);
+  color: #CBD5E1;
+  line-height: var(--nk-lh-body);
+  margin: 0;
+}
+
+.how-step-phone-link {
+  color: #FCE04C;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  letter-spacing: 0;
+  direction: ltr;              /* R56: رفع وارونگی بای‌دی (66120332-021) */
+  unicode-bidi: isolate;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;            /* R56: تارگت لمسی */
+}
+
+.how-step-phone-link:focus-visible {
+  outline: 2px solid var(--brand-gold, #FCE04C);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .how-step-card,
+  .how-step-card:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   R43 (2026-09-18): sell-banner gold polish + FAQ micro-interactions
+   ========================================================================== */
+.sell-banner-box {
+  /* R72: هالهٔ طلایی عمداً حفظ شد — تک‌درخشش امضای بخش فروش + قفل R43-1؛ فقط هالهٔ آبی مرده در بلوک پایه حذف شد */
+  background:
+    radial-gradient(800px 400px at 90% 0%, rgba(233, 191, 50, 0.18), transparent 60%),
+    var(--surface-900);
+}
+
+.sell-banner-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to left, #FCE04C, var(--brand-gold) 45%, rgba(233, 191, 50, 0.35) 90%, transparent);
+  pointer-events: none;
+}
+
+.sell-point-item strong {
+  color: #FCE04C;
+}
+
+.sell-point-item {
+  padding-right: 0.9rem;
+  border-right: 2px solid rgba(252, 224, 76, 0.35);
+}
+
+.sell-mini-form {
+  border-color: rgba(252, 224, 76, 0.28);
+}
+
+.minimal-field input:focus {
+  border-color: var(--brand-gold);
+  box-shadow: 0 0 0 4px rgba(233, 191, 50, 0.22);
+}
+
+.minimal-field input:focus-visible {
+  outline: none;
+}
+
+.minimal-field input:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+.faq-question:hover svg {
+  color: #FCE04C;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-question:hover svg,
+  .faq-question svg {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   بهینه‌سازی بارگذاری و رندر صفحات طولانی — حذف تیک اسکرول (60fps Scroll Pipeline)
+   ========================================================================== */
+.why-us-clean,
+.how-it-works-section,
+.sell-car-section,
+.faq-clean,
+.footer-clean {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 450px;
+}
+
+/* R53: ریتم عمودی یکنواخت — یک قاعده برای همهٔ بخش‌های محتوا (هیرو مستثنا) */
+main > section:not(.hero-slider-section) {
+  padding-block: var(--nk-section-lg);
+}
+
+/* R53: فاصلهٔ بعد از هیرو کمتر از ریتم عمومی — هیرو خودش بلوک سنگین است */
+.hero-slider-section + section {
+  padding-block-start: var(--nk-section);
+}
+
+/* R54: سرتیتر یکدست برای همهٔ بخش‌ها — چیدمان و ریتم یکسان (RTL start-aligned) */
+.nk-head {
+  text-align: start;
+  margin-block-end: var(--nk-s5);
+}
+.nk-head > h1, .nk-head > h2, .nk-head > h3 { margin: 0; }
+.nk-head > * + * { margin-block-start: var(--nk-s2); }
+.faq-header-center.nk-head { text-align: start; margin-inline: 0; }
+
+/* ==========================================================================
+   موشن هدفمند (فاز ۵) — reveal فقط با JS (progressive enhancement؛ بدون JS پنهان نمی‌ماند)
+   ========================================================================== */
+.js-reveal .nk-head,
+.js-reveal .car-card-modern,
+.js-reveal .why-us-card,
+.js-reveal .zero-price-card,
+.js-reveal .ency-card,
+.js-reveal .faq-item,
+.js-reveal .sell-banner-box,
+.js-reveal .contact-section-clean {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--nk-t-reveal) var(--nk-ease-out), transform var(--nk-t-reveal) var(--nk-ease-out);
+  transition-delay: var(--nk-reveal-delay, 0ms);
+}
+
+.js-reveal .nk-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .nk-head,
+  .js-reveal .car-card-modern,
+  .js-reveal .why-us-card,
+    .js-reveal .zero-price-card,
+  .js-reveal .ency-card,
+  .js-reveal .faq-item,
+  .js-reveal .sell-banner-box,
+  .js-reveal .contact-section-clean {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .faq-question:hover svg {
+    transition: none;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   R68 — هدر مینیمال دسکتاپ (≤1200px دست‌نخورده: کشو + هدر ۷۰px)
+   کاهش: ارتفاع ۸۰→۶۴، شیشهٔ تک‌لایه، حذف هالهٔ گرم و سایهٔ شناور،
+   حذف ریل کپسولی و پیل متالیک فعال → ناوبری تخت + زیرخط طلایی فعال
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1201px) {
+  .site-header {
+    background: rgba(11, 18, 32, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(233, 191, 50, 0.10);
+    box-shadow: none;
+  }
+
+  /* خط مویی طلایی لبهٔ پایین محو‌تر (گرادیان طلایی حفظ می‌شود) */
+  .site-header::after {
+    opacity: 0.5;
+  }
+
+  .header-inner {
+    height: 64px;
+    gap: 1.5rem;
+  }
+
+  /* لوگو بدون جداکنندهٔ عمودی و بدون هالهٔ درخشش */
+  .brand-logo {
+    gap: 0;
+    padding-inline-end: 0;
+    border-inline-end: none;
+  }
+
+  .brand-logo-img {
+    height: 40px;
+    max-width: 190px;
+    filter: none;
+  }
+
+  .brand-logo:hover .brand-logo-img {
+    filter: none;
+  }
+
+  /* ناوبری تخت به‌جای ریل کپسولی */
+  .nav-links {
+    gap: 0.25rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .nav-link-item {
+    font-weight: 600;
+    color: rgba(226, 232, 240, 0.76);
+    padding: 0.5rem 0.4rem;
+  }
+
+  .nav-link-item::after {
+    right: 0.4rem;
+    left: 0.4rem;
+  }
+
+  .nav-link-item:hover {
+    color: var(--nk-gold-bright);
+  }
+
+  /* فعال = متن طلایی + زیرخط طلایی؛ بدون پیل متالیک و سایه */
+  .nav-link-item.active {
+    background: none;
+    color: var(--nk-gold-bright);
+    border: none;
+    border-radius: 0;
+    margin-inline-start: 0;
+    padding: 0.5rem 0.4rem;
+    box-shadow: none;
+  }
+
+  .nav-link-item.active::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  /* CTA تماس: خط مویی طلایی، بدون سایه و بدون جابه‌جایی هاور */
+  .btn-header-call {
+    height: 40px;
+    min-height: 40px;
+    padding: 0 1rem;
+    font-weight: 700;
+    color: var(--nk-gold-bright);
+    border: 1px solid rgba(233, 191, 50, 0.30);
+    box-shadow: none;
+  }
+
+  .btn-header-call:hover {
+    transform: none;
+    background: rgba(233, 191, 50, 0.08);
+    color: var(--nk-gold-bright);
+    border-color: rgba(233, 191, 50, 0.55);
+    box-shadow: none;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   R69 — اصلاح‌های بازخورد بازبینی (۴ نشانه)
+   ۱) کپسول لیبل FAB: بازشدن به سمت داخل صفحه (RTL + inset-inline-start
+      لیبل را از لبهٔ چپ بیرون می‌انداخت: x=-98 تا 20 در viewport ۱۴۴۰)
+   ۲) ریل FAB: در ≤۱۳۶۸px گاتر کنار ستون محتوا (۱۱۹۲px) نمی‌گنجد و روی
+      کارت فیلتر/کپسول‌های چیپ می‌افتاد → ریل فشردهٔ ۴۴px چسبیده به لبه
+      (آستانه: گاتر ≥۸۸px فقط از ۱۳۶۹px به بالا)
+   ۳) پین نقشه: `inset-inline-start:50%` در RTL = right:50% و با
+      translate(-50%) دوبار جابه‌جا می‌شد → پین ۱۵px چپ و ۳۵px پایین‌تر از
+      مرکز تصویر (خروجی OSM روی همان مختصات مرکز شده است)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ۱ — لیبل کپسولی FAB در جهت محتوا باز شود، نه بیرون از لبهٔ چپ صفحه */
+.float-btn .float-label {
+  inset-inline-start: auto;
+  left: calc(100% + 10px);
+  transform: translateX(-6px);
+}
+
+/* ۲ — لِین اختصاصی ریل FAB: تا ۱۳۶۸px گاتر کنار ستون ۱۱۹۲px (۲۴px) کمتر از
+   عرض ریل است، پس ریل روی لبهٔ چپ کارت‌ها/دکمه‌های محتوا می‌افتاد
+   (اسکن ۱۰۲۴/۱۱۰۰/۱۲۰۰: zp-brand-card، ency-card، cta-band-wa،
+   footer-back-top در ۲۰px اول پوشیده می‌شدند) → ریل فقط از ۱۳۶۹px به بالا
+   که گاتر ≥۸۸px است نمایش داده می‌شود؛ در ۷۶۹–۱۲۰۰ کشوی ناوبری و در
+   ۱۲۰۱–۱۳۶۸ دکمهٔ تماس هدر مسیر تماس را پوشش می‌دهند (بدون از دست رفتن عملکرد) */
+@media (max-width: 1368px) {
+  .floating-action-hub {
+    display: none;
+  }
+}
+
+/* ۳ — پین نقشه دقیقاً روی مرکز تصویر (مختصهٔ مرکز خروجی OSM) */
+.map-pin {
+  inset-inline-start: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -92%);
+}
+
+/* ۴ — کپسول‌های فیلتر داخل قاب کارت بمانند: ردیف اسکرول‌افقی در ≥۷۶۹px
+   (محتوا ۹۱۶px در ظرف ۷۸۲px در viewport ۸۷۲) ۱–۲ چیپ را بیرون از قاب
+   می‌بُرد → شکستن به خط بعد به‌جای اسکرول */
+@media (min-width: 769px) {
+  .filter-categories-pills {
+    flex-wrap: wrap;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+}

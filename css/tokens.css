@@ -1,0 +1,134 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Novin Khodro — Design Tokens (تنها منبع مقادیر بصری)
+   ───────────────────────────────────────────────────────────────────────────
+   قواعد این فایل:
+   ۱) فقط مقادیر پایه — هیچ سلکتور کامپوننتی اینجا نیست.
+   ۲) هیچ مقدار ad-hoc در style.css/responsive.css نوشته نشود؛ از این توکن‌ها استفاده شود.
+   ۳) افزودن توکن جدید فقط وقتی لازم است که حداقل دو مصرف‌کننده داشته باشد (YAGNI).
+   ۴) فایل باید قبل از style.css لود شود (index.html و encyclopedia.html).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── سطوح: نردبان ۳ پله (بیشتر نشود) ───────────────────────────────── */
+  --nk-bg: #0B1220;          /* پس‌زمینه صفحه */
+  --nk-surface-1: #101A2E;   /* کارت/پنل */
+  --nk-surface-2: #172338;   /* کارت روی کارت / hover */
+
+  /* ── متن: نردبان ۳ پله ────────────────────────────────────────────── */
+  --nk-text: #F8FAFC;
+  --nk-text-muted: #94A3B8;
+  --nk-text-dim: #64748B;
+
+  /* ── تنها اکسنت محصول: طلایی ──────────────────────────────────────── */
+  --nk-accent: #E9BF32;                        /* CTA/سطح */
+  --nk-accent-bright: #FCE04C;                 /* متن/آیکون روی تیره */
+  --nk-accent-hairline: rgba(252, 224, 76, 0.15);
+  --nk-accent-soft: rgba(252, 224, 76, 0.28);
+
+  /* ── مرزها ─────────────────────────────────────────────────────────── */
+  --nk-border: rgba(255, 255, 255, 0.08);
+  --nk-border-strong: rgba(255, 255, 255, 0.14);
+
+  /* ── شعاع: ۳ پله ──────────────────────────────────────────────────── */
+  --nk-r-sm: 10px;
+  --nk-r-md: 16px;
+  --nk-r-lg: 24px;
+  --nk-r-pill: 999px;
+
+  /* ── فاصله: مقیاس ۸ پله ───────────────────────────────────────────── */
+  --nk-s1: 0.25rem;
+  --nk-s2: 0.5rem;
+  --nk-s3: 0.75rem;
+  --nk-s4: 1rem;
+  --nk-s5: 1.5rem;
+  --nk-s6: 2rem;
+  --nk-s7: 3rem;
+  --nk-s8: 4.5rem;
+
+  /* ── ریتم عمودی بخش: فقط ۲ مقدار ──────────────────────────────────── */
+  --nk-section: clamp(4rem, 7vw, 6rem);
+  --nk-section-lg: clamp(4.5rem, 8vw, 7rem);
+
+  /* ── ارتفاع: نردبان ۳ پله ─────────────────────────────────────────── */
+  --nk-e1: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --nk-e2: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --nk-e3: 0 24px 48px rgba(0, 0, 0, 0.45);
+
+  /* ── تایپوگرافی: مقیاس ۸ پله (جایگزین ۱۶ اندازهٔ ad-hoc) ──────────── */
+  --nk-fs-xs: 0.8125rem;    /* 13px — کپشن/برچسب/متادیتا */
+  --nk-fs-sm: 0.9375rem;    /* 15px — متن کمکی */
+  --nk-fs-body: 1rem;       /* 16px — بدنه */
+  --nk-fs-h3: 1.125rem;     /* 18px — زیرعنوان کارت */
+  --nk-fs-lg: 1.375rem;     /* 22px — عنوان کوچک/عدد شاخص */
+  --nk-fs-subhead: clamp(1.5rem, 2.4vw, 1.75rem);  /* 22–28px — زیرتیتر و قیمت */
+  --nk-fs-h2: clamp(1.625rem, 3.4vw, 2.375rem);          /* 24–34px — تیتر بخش */
+  --nk-fs-display: clamp(2.25rem, 5vw, 3.625rem);      /* 32–52px — تیتر هیرو */
+  --nk-lh-tight: 1.25;
+  --nk-lh-body: 1.75;
+  --nk-fw-display: 900;
+  --nk-fw-strong: 700;
+  --nk-fw-ui: 500;
+
+  /* ── حرکت: ۲ مدت + ۲ easing ───────────────────────────────────────── */
+  --nk-t-micro: 160ms;
+  --nk-t-reveal: 340ms;
+  --nk-ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --nk-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── لایهبندی ─────────────────────────────────────────────────────── */
+  --nk-z-content: 1;
+  --nk-z-header: 100;
+  --nk-z-drawer: 200;
+  --nk-z-modal: 300;
+  --nk-z-toast: 400;
+
+  /* ── شل مشترک همهٔ صفحات (R62) ─────────────────────────────────────── */
+  --nk-container: 1200px;
+  --nk-header-h: 80px;
+  --nk-touch-min: 44px;
+
+  /* ── نامهای میراثی: فقط alias روی توکنها، هرگز مقدار خام تازه (R62)
+       هدف: یک زنجیرهٔ مقدار برای کل سایت — تغییر پالت فقط اینجا ─────────── */
+  --canvas: var(--nk-bg);
+  --foreground: var(--nk-text);
+  --muted-foreground: var(--nk-text-muted);
+  --nk-surface: var(--nk-surface-1);
+  --surface-900: var(--nk-bg);
+  --surface-800: var(--nk-surface-1);
+  --surface-700: var(--nk-surface-2);
+  --bg-main: var(--nk-bg);
+  --bg-subtle: var(--nk-bg);
+  --bg-card: var(--nk-surface-1);
+  --bg-card-hover: var(--nk-surface-2);
+  --text-title: var(--nk-text);
+  --text-body: var(--nk-text-muted);
+  --text-muted: var(--nk-text-muted);
+  --text-main: var(--nk-text);
+  --text-on-dark: var(--nk-text);
+  --text-on-dark-muted: var(--nk-text-muted);
+  --brand-gold: var(--nk-accent-bright);
+  --brand-gold-dark: var(--nk-accent);
+  --container-width: var(--nk-container);
+  --header-height: var(--nk-header-h);
+  --touch-target-min: var(--nk-touch-min);
+
+  /* ── پالت لوگوی رسمی نوین خودرو (R63)
+       مقادیر مستقیماً از گرادیان «sheen» داخل فایل لوگو استخراج شده‌اند
+       (svg/نوین خودرو مشکی طلایی) — تنها منبع طلایی متالیک هدر/لوگو ───── */
+  --nk-gold-deep: #A1822E;
+  --nk-gold-base: #DBB12B;
+  --nk-gold-core: #E9BF32;
+  --nk-gold-bright: #FCE04C;
+  --nk-gold-light: #F1E781;
+  --nk-gold-pale: #FAEE83;
+  --nk-gold-6: #D9A128;
+  --nk-gold-sheen: linear-gradient(100deg, #A1822E 0%, #DBB12B 12%, #E9BF32 26%, #F1E781 40%, #FAEE83 52%, #E9BF32 66%, #FCE04C 84%, #D9A128 100%);
+}
+
+/* کاهش حرکت: همهٔ مدت‌ها عملاً صفر (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --nk-t-micro: 1ms;
+    --nk-t-reveal: 1ms;
+  }
+}

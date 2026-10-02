@@ -1,0 +1,669 @@
+/* ==========================================================================
+   صفحه پروفایل خودرو (IKCO Encyclopedia) — فقط توکن‌های css/tokens.css
+   ========================================================================== */
+
+/* ---------- Shell ---------- */
+.ikco-profile-page {
+  display: none;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+.ikco-profile-page[hidden] { display: none; }
+.ikco-profile-page:not([hidden]) { display: block; }
+
+/* ---------- Head ---------- */
+.ikco-profile-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.ikco-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+  color: var(--foreground);
+  background: var(--surface-800);
+  font-size: var(--nk-fs-sm);
+  transition: border-color .2s ease, color .2s ease;
+}
+.ikco-back-btn:hover { border-color: var(--brand-gold); color: var(--brand-gold); }
+.ikco-title-wrap { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 180px; }
+.ikco-title {
+  margin: 0;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--foreground);
+}
+.ikco-encyclopedia-tag {
+  font-size: var(--nk-fs-xs);
+  color: var(--brand-gold);
+  border: 1px solid var(--brand-gold);
+  border-radius: 999px;
+  padding: 2px 10px;
+  width: fit-content;
+}
+.ikco-updated { font-size: var(--nk-fs-xs); color: var(--muted-foreground); }
+
+/* ---------- Hero ---------- */
+.ikco-hero {
+  margin: 0 0 20px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+  background: var(--surface-800);
+}
+.ikco-hero-img { display: block; width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; }
+
+/* ---------- Spec Strip ---------- */
+.ikco-spec-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.ikco-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+}
+.ikco-strip-icon { color: var(--brand-gold); display: inline-flex; }
+.ikco-strip-body { display: flex; flex-direction: column; line-height: 1.35; }
+.ikco-strip-val {
+  font-variant-numeric: tabular-nums;
+  color: var(--foreground);
+  font-size: var(--nk-fs-body);
+}
+.ikco-strip-unit { font-size: var(--nk-fs-xs); color: var(--muted-foreground); }
+.ikco-strip-label { font-size: var(--nk-fs-xs); color: var(--muted-foreground); }
+
+/* ---------- Tabs ---------- */
+.ikco-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+  scrollbar-width: none;
+  position: sticky;
+  top: 0;
+  background: var(--surface-900);
+  z-index: 5;
+}
+.ikco-tabs::-webkit-scrollbar { display: none; }
+.ikco-tab {
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--muted-foreground);
+  font-family: inherit;
+  font-size: var(--nk-fs-sm);
+  padding: 12px 16px;
+  min-height: 44px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color .2s ease, border-color .2s ease;
+}
+.ikco-tab.active { color: var(--brand-gold); border-bottom-color: var(--brand-gold); }
+.ikco-tab:focus-visible { outline: 2px solid var(--brand-gold); outline-offset: -2px; }
+
+/* ---------- Panels ---------- */
+.ikco-panel { display: none; padding-top: 18px; }
+.ikco-panel.active { display: block; }
+.ikco-panel-inner { animation: ikcoFade .25s ease; }
+@keyframes ikcoFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .ikco-panel-inner { animation: none; } }
+
+/* ---------- Overview ---------- */
+.ikco-overview-text { color: var(--foreground); line-height: 2; font-size: var(--nk-fs-sm); }
+.ikco-sub-heading { color: var(--brand-gold); font-size: var(--nk-fs-body); margin: 18px 0 10px; }
+.ikco-variant-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ikco-variant-chip {
+  font-size: var(--nk-fs-xs);
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+  color: var(--foreground);
+}
+.ikco-video-box { margin-top: 18px; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1)); }
+.ikco-video-box iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ---------- Specs Table ---------- */
+.ikco-spec-table { width: 100%; border-collapse: collapse; font-size: var(--nk-fs-sm); }
+.ikco-spec-group-head th {
+  text-align: right;
+  color: var(--brand-gold);
+  font-size: var(--nk-fs-xs);
+  padding: 14px 8px 8px;
+  border-bottom: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+}
+.ikco-spec-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+.ikco-spec-key { color: var(--muted-foreground); font-weight: 400; text-align: right; padding: 10px 8px; width: 45%; }
+.ikco-spec-val { color: var(--foreground); font-variant-numeric: tabular-nums; padding: 10px 8px; text-align: right; }
+.ikco-last-updated { margin-top: 14px; font-size: var(--nk-fs-xs); color: var(--muted-foreground); }
+
+/* ---------- Features ---------- */
+.ikco-feature-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ikco-feature-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+  color: var(--foreground);
+  font-size: var(--nk-fs-sm);
+  line-height: 1.8;
+}
+.ikco-feature-icon { color: var(--brand-gold); display: inline-flex; margin-top: 4px; flex-shrink: 0; }
+
+/* ---------- Gallery ---------- */
+.ikco-gallery-main {
+  margin: 0 0 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+}
+.ikco-gallery-img { display: block; width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; cursor: zoom-in; }
+.ikco-gallery-thumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; }
+.ikco-thumb {
+  flex: 0 0 auto;
+  width: 96px;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: var(--surface-800);
+  cursor: pointer;
+}
+.ikco-thumb.active { border-color: var(--brand-gold); }
+.ikco-thumb img { display: block; width: 96px; height: 64px; object-fit: cover; }
+.ikco-lightbox-trigger {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+  background: var(--surface-800);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: var(--nk-fs-xs);
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease;
+}
+.ikco-lightbox-trigger:hover { border-color: var(--brand-gold); color: var(--brand-gold); }
+
+/* ---------- Lightbox ---------- */
+.ikco-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(4, 8, 16, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ikco-lightbox-img { max-width: 92vw; max-height: 88vh; border-radius: 8px; }
+.ikco-lightbox-close, .ikco-lightbox-prev, .ikco-lightbox-next {
+  position: absolute;
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.15));
+  color: var(--foreground);
+  font-size: var(--nk-fs-lg);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ikco-lightbox-close { top: 16px; left: 16px; }
+.ikco-lightbox-prev { right: 16px; top: 50%; transform: translateY(-50%); }
+.ikco-lightbox-next { left: 16px; top: 50%; transform: translateY(-50%); }
+
+/* ---------- Documents ---------- */
+.ikco-doc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ikco-doc-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+  color: var(--foreground);
+  min-height: 44px;
+  transition: border-color .2s ease;
+}
+.ikco-doc-btn:hover { border-color: var(--brand-gold); }
+.ikco-doc-icon { color: var(--brand-gold); display: inline-flex; flex-shrink: 0; }
+.ikco-doc-label { font-weight: 700; font-size: var(--nk-fs-sm); }
+.ikco-doc-name { font-size: var(--nk-fs-xs); color: var(--muted-foreground); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; direction: ltr; }
+
+/* ---------- 360 Panorama ---------- */
+.ikco-tour-hint { display: flex; align-items: center; gap: 8px; color: var(--muted-foreground); font-size: var(--nk-fs-xs); margin-bottom: 12px; }
+.ikco-tour-icon { color: var(--brand-gold); display: inline-flex; }
+.ikco-pano {
+  position: relative;
+  height: 260px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line-on-dark, rgba(255,255,255,0.1));
+  margin-bottom: 14px;
+  cursor: grab;
+  touch-action: pan-y;
+  background: var(--surface-800);
+}
+.ikco-pano.dragging { cursor: grabbing; }
+.ikco-pano-surface { position: absolute; inset: 0; background-repeat: repeat-x; background-position: left center; }
+.ikco-pano-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  font-size: var(--nk-fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--brand-gold);
+  background: rgba(4, 8, 16, 0.7);
+  border: 1px solid var(--brand-gold);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+/* ---------- Empty / Not-found ---------- */
+.ikco-empty-note { color: var(--muted-foreground); font-size: var(--nk-fs-sm); padding: 16px 0; }
+
+/* ---------- Encyclopedia Section (دانشنامه خودروها) ---------- */
+.encyclopedia-section {
+  padding: 72px 0;
+  background: var(--surface-900);
+  border-top: 1px solid var(--line-on-dark, rgba(252, 224, 76, 0.15));
+}
+.ency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.ency-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(252, 224, 76, 0.15));
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ency-card:hover, .ency-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--brand-gold);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+.ency-card-media { display: block; aspect-ratio: 16/10; overflow: hidden; background: var(--surface-900); }
+.ency-card-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.ency-card:hover .ency-card-media img { transform: scale(1.04); }
+.ency-card-body { display: flex; flex-direction: column; gap: 4px; padding: 14px 14px 6px; }
+.ency-card-name { font-weight: 800; font-size: var(--nk-fs-body); color: var(--foreground); }
+.ency-card-specs { font-size: var(--nk-fs-xs); color: var(--muted-foreground); line-height: 1.7; }
+.ency-card-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 14px 14px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--brand-gold);
+  color: var(--brand-gold);
+  font-size: var(--nk-fs-xs);
+  font-weight: 700;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ency-card:hover .ency-card-cta { background: var(--brand-gold); color: var(--surface-900); }
+@media (max-width: 640px) {
+  .ency-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .ency-card-specs { display: none; }
+}
+
+/* ---------- Profile link on catalog cards ---------- */
+a.ikco-profile-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--brand-gold);
+  color: var(--brand-gold);
+  background: transparent;
+  font-size: var(--nk-fs-sm);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+a.ikco-profile-link:hover { background: var(--brand-gold); color: var(--surface-900); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .ikco-profile-page { padding: 16px 12px 48px; }
+  .ikco-pano { height: 200px; }
+  .ikco-spec-strip { grid-template-columns: repeat(2, 1fr); }
+  .ikco-doc-name { display: none; }
+}
+
+/* ---------- sr-only (اگر در style.css نبود) ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Zero Prices Section (قیمت روز خودروهای صفر) ---------- */
+.zero-prices-section {
+  padding: 64px 0;
+  background: var(--surface-900);
+  border-top: 1px solid var(--line-on-dark, rgba(252, 224, 76, 0.15));
+}
+/* ---------- Zero Prices — تجربه مرحله‌به‌مرحله (برند → مدل → تیپ) ---------- */
+.zp-step-title {
+  margin: 0 0 16px;
+  font-size: var(--nk-fs-h3);
+  font-weight: 800;
+  color: var(--muted-foreground);
+}
+
+/* Breadcrumb */
+.zp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.zp-crumb {
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(252, 224, 76, 0.15));
+  color: var(--muted-foreground);
+  border-radius: 999px;
+  padding: 6px 16px;
+  min-height: 36px;
+  font-family: inherit;
+  font-size: var(--nk-fs-xs);
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.zp-crumb:hover { color: var(--brand-gold); border-color: var(--brand-gold); }
+.zp-crumb-current {
+  color: var(--brand-gold);
+  font-size: var(--nk-fs-xs);
+  font-weight: 800;
+}
+.zp-crumb-sep { color: var(--muted-foreground); opacity: 0.6; }
+
+/* گروه‌بندی برندها: ایرانی/خارجی */
+.zp-group-label {
+  margin: 26px 0 12px;
+  font-size: var(--nk-fs-xs);
+  font-weight: 800;
+  color: var(--brand-gold);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.zp-group-label::before, .zp-group-label::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to left, var(--line-on-dark, rgba(252, 224, 76, 0.25)), transparent);
+}
+.zp-group-label::after { flex: 0 0 48px; }
+.zp-group-label:first-of-type { margin-top: 8px; }
+
+/* تیپ‌ها: سرگروه روشن‌تر از زیرردیف (سلسله‌مراتب درست) */
+.zp-trim-list { max-width: 860px; }
+.zp-trim-group { display: flex; flex-direction: column; gap: 6px; }
+.zp-trim-sub .zp-trim-year { color: var(--muted-foreground); }
+.zp-trim-head {
+  background: var(--surface-700, #16223A);
+  border-color: rgba(252, 224, 76, 0.3);
+}
+.zp-trim-head .zp-trim-price { font-size: var(--nk-fs-body); }
+.zp-trim-sub {
+  margin-inline-start: 18px;
+  padding: 9px 14px;
+  background: transparent;
+  border-color: rgba(147, 161, 188, 0.12);
+}
+.zp-trim-sub:hover { border-color: rgba(252, 224, 76, 0.35); }
+.zp-trim-sub .zp-trim-main { flex-direction: row; align-items: baseline; gap: 8px; }
+.zp-trim-unit { font-size: var(--nk-fs-xs); font-weight: 700; color: var(--muted-foreground); margin-inline-start: 4px; }
+
+/* جستجوی برند */
+.zp-brand-search {
+  width: 100%;
+  max-width: 520px;   /* R57: هم‌ریتم با عرض سرتیتر بخش */
+  margin-bottom: 18px;
+  padding: 11px 16px;
+  min-height: 44px;
+  background: var(--surface-800);
+  border: 1px solid rgba(147, 161, 188, 0.25);
+  border-radius: 12px;
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: var(--nk-fs-sm);
+}
+.zp-brand-search:focus { outline: 2px solid var(--brand-gold); outline-offset: 1px; border-color: transparent; }
+
+/* View 1: کارت برندها */
+.zp-brand-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+.zp-brand-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  text-align: right;
+  padding: 22px 18px 18px;
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(252, 224, 76, 0.15));
+  border-radius: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.zp-brand-card:hover, .zp-brand-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--brand-gold);
+  box-shadow: 0 12px 32px rgba(233, 191, 50, 0.12);
+}
+.zp-brand-watermark {
+  position: absolute;
+  inset-inline-end: -16px;
+  bottom: -10px;
+  width: 120px;
+  height: 84px;
+  opacity: 0.08;
+  color: var(--brand-gold);
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.zp-brand-card:hover .zp-brand-watermark { opacity: 0.16; }
+.zp-brand-watermark svg { width: 100%; height: 100%; display: block; }
+.zp-brand-name {
+  font-size: var(--nk-fs-h3);
+  font-weight: 900;
+  color: var(--foreground);
+  transition: color 0.2s ease;
+}
+.zp-brand-card:hover .zp-brand-name { color: var(--brand-gold); }
+.zp-brand-meta {
+  font-size: var(--nk-fs-xs);
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.zp-brand-cta, .zp-model-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: var(--nk-fs-xs);
+  font-weight: 700;
+  color: var(--brand-gold);
+}
+/* path ذاتاً چپ‌نما ← که در RTL جهت «ادامه» است؛ بدون flip */
+
+/* View 2: کارت مدل‌ها */
+.zp-model-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 14px;
+}
+.zp-model-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  text-align: right;
+  padding: 22px 18px 18px;
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(252, 224, 76, 0.15));
+  border-radius: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.zp-model-card:hover, .zp-model-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--brand-gold);
+  box-shadow: 0 12px 32px rgba(233, 191, 50, 0.12);
+}
+.zp-model-name {
+  font-size: var(--nk-fs-body);
+  font-weight: 900;
+  color: var(--foreground);
+  transition: color 0.2s ease;
+}
+.zp-model-card:hover .zp-model-name { color: var(--brand-gold); }
+.zp-model-range {
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  color: var(--brand-gold);
+  font-variant-numeric: tabular-nums;
+}
+.zp-model-meta {
+  font-size: var(--nk-fs-xs);
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+/* View 3: لیست تیپ‌ها */
+.zp-trim-list { display: flex; flex-direction: column; gap: 10px; }
+.zp-trim-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 16px 18px;
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark, rgba(252, 224, 76, 0.15));
+  border-radius: 14px;
+  transition: border-color 0.2s ease;
+}
+.zp-trim-row:hover { border-color: var(--brand-gold); }
+.zp-trim-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.zp-trim-name { font-size: var(--nk-fs-sm); font-weight: 800; color: var(--foreground); }
+.zp-trim-year {
+  font-size: var(--nk-fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+}
+.zp-trim-side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.zp-trim-price {
+  font-size: var(--nk-fs-body);
+  font-weight: 900;
+  color: var(--brand-gold);
+  font-variant-numeric: tabular-nums;
+}
+
+/* بج روند (مشترک) */
+.zp-trend {
+  display: inline-block;
+  font-size: var(--nk-fs-xs);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+.zp-trend.zp-up { color: #4ADE80; background: rgba(74, 222, 128, 0.12); }
+.zp-trend.zp-down { color: #F87171; background: rgba(248, 113, 113, 0.12); }
+.zp-trend.zp-flat { color: var(--muted-foreground); background: rgba(147, 160, 184, 0.12); }
+
+.zp-error { color: var(--muted-foreground); font-size: var(--nk-fs-sm); padding: 16px 0; }
+
+@media (max-width: 640px) {
+  .zp-brand-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .zp-model-cards { grid-template-columns: 1fr; }
+  .zp-brand-card { padding: 16px 14px 14px; }
+  .zp-brand-cta, .zp-model-cta { display: none; }
+  .zp-trim-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* ═══ صفحهٔ مستقل دانشنامه (encyclopedia.html) ═══ */
+.ency-breadcrumb { margin: 1.5rem 0 0.5rem; }
+.ency-breadcrumb ol {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+  list-style: none; margin: 0; padding: 0;
+  font-size: var(--nk-fs-sm); color: #94A3B8;
+}
+.ency-breadcrumb li + li::before { content: '›'; margin-inline-end: 0.5rem; color: #64748B; }
+/* R61: تارگت لمسی ≥۴۴px برای لینک‌های مسیر صفحه (WCAG 2.5.8) — لینک درون‌متنی پاراگراف مستثناست */
+.ency-breadcrumb a { color: #FCE04C; text-decoration: none;
+  display: inline-flex; align-items: center; min-height: var(--touch-target-min, 44px); }
+.ency-breadcrumb a:hover { text-decoration: underline; }
+.ency-breadcrumb a:focus-visible { outline: 3px solid #FCE04C; outline-offset: 2px; border-radius: 4px; }
+
+/* لینک «صفحه کامل دانشنامه» داخل سکشن صفحه اصلی */
+.ency-more-link { color: #FCE04C; font-weight: 700; text-decoration: none; white-space: nowrap;
+  display: inline-flex; align-items: center; min-height: 44px; /* R56: تارگت لمسی */ }
+.ency-more-link:hover { text-decoration: underline; }
+.ency-more-link:focus-visible { outline: 3px solid #FCE04C; outline-offset: 2px; border-radius: 4px; }

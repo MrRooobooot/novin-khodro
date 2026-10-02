@@ -1,0 +1,20 @@
+{
+  "name": "novin-khodro",
+  "version": "1.0.0",
+  "description": "Novin Khodro Showroom & Installment Platform",
+  "private": true,
+  "scripts": {
+    "test": "node tests/run_tests.js",
+    "test:tier0": "node tests/run_tests.js --tier0",
+    "test:tier1": "node tests/run_tests.js --tier1",
+    "test:tier2": "node tests/run_tests.js --tier2",
+    "test:tier3": "node tests/run_tests.js --tier3",
+    "test:tier4": "node tests/run_tests.js --tier4",
+    "audit": "node scripts/audit-components.js",
+    "verify": "npm run test && npm run audit",
+    "deploy": "bash scripts/deploy-smoke.sh"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

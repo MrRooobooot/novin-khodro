@@ -1,0 +1,8 @@
+[
+  {"source": "commons", "brand": "chery", "model": "xtrim-vx", "query": "Chery Tiggo 8"},
+  {"source": "commons", "brand": "ikco", "model": "peugeot-207i", "query": "Peugeot 207"},
+  {"source": "commons", "brand": "ikco", "model": "dena-plus", "query": "IKCO Dena"},
+  {"source": "bama", "brand": "bama", "model": "catalog-listing", "mode": "page", "url": "https://bama.ir/car"},
+  {"source": "bama", "brand": "bama", "model": "studio-sample", "url": "https://cdn-sth1.bama.ir/uploads/BamaImages/VehicleCarImages/79a040d3-7bd3-4182-aa14-dc8918a80e7f/CarImage_a8f3099a168847d69ac4416cb909f7d2.jpg"},
+  {"source": "khodro45", "brand": "khodro45", "model": "catalog-sample", "url": "https://media.khodro45.com/public/image/42f35d3877e34e10b995c8310707c90e_plate_allure"}
+]

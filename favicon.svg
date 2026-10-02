@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <defs>
+    <linearGradient id="favBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#0B1220" />
+    </linearGradient>
+    <linearGradient id="brandGradF" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="55%" stop-color="#93C5FD" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <linearGradient id="carBodyF" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1B2A44" />
+      <stop offset="100%" stop-color="#0B1220" />
+    </linearGradient>
+    <linearGradient id="glassF" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#0B1220" stop-opacity="0.95" />
+    </linearGradient>
+  </defs>
+
+  <!-- Luxury Squircle Surface -->
+  <rect width="64" height="64" rx="14" fill="url(#favBg)" stroke="#F59E0B" stroke-width="1.5" stroke-opacity="0.4" />
+
+  <!-- Car Emblem scaled down to fit 64x64 center (original scale ~0.55, center 32, 33) -->
+  <g transform="translate(32, 33) scale(0.55)">
+    <path d="M -36, -5 C -24,-25 24,-25 36,-5" stroke="url(#brandGradF)" stroke-width="3.8" stroke-linecap="round" fill="none" />
+    <path d="M -46, -5 L -35, -5" stroke="url(#brandGradF)" stroke-width="3" stroke-linecap="round" opacity="0.85" />
+    <path d="M 35, -5 L 46, -5" stroke="url(#brandGradF)" stroke-width="3" stroke-linecap="round" opacity="0.85" />
+
+    <path d="M -26, 7 L -31, 5 L -29, 10 Z" fill="url(#carBodyF)" stroke="url(#brandGradF)" stroke-width="1.5" stroke-linejoin="round" />
+    <path d="M 26, 7 L 31, 5 L 29, 10 Z" fill="url(#carBodyF)" stroke="url(#brandGradF)" stroke-width="1.5" stroke-linejoin="round" />
+
+    <path d="M -16, -5 L -22, 6 L 22, 6 L 16, -5 Z" fill="url(#glassF)" stroke="url(#brandGradF)" stroke-width="2" stroke-linejoin="round" />
+
+    <path d="M -27, 6 C -28,10 -28,14 -26,17 L -24,21 C -23,22.5 -20,23.5 -17,23.5 L 17,23.5 C 20,23.5 23,22.5 24,21 L 26,17 C 28,14 28,10 27,6 Z" fill="url(#carBodyF)" stroke="url(#brandGradF)" stroke-width="2.2" stroke-linejoin="round" />
+
+    <path d="M -12, 12 L 12, 12 L 9, 20 L -9, 20 Z" fill="#0B1220" stroke="url(#brandGradF)" stroke-width="1.5" />
+    <polygon points="-24,7.5 -14.5,7.5 -16.5,12 -25,11" fill="#93C5FD" />
+    <polygon points="24,7.5 14.5,7.5 16.5,12 25,11" fill="#93C5FD" />
+
+    <circle cx="-18" cy="18.5" r="2.5" fill="#F59E0B" />
+    <circle cx="18" cy="18.5" r="2.5" fill="#F59E0B" />
+  </g>
+</svg>

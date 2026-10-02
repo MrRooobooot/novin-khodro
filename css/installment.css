@@ -1,0 +1,662 @@
+/* ==========================================================================
+   استایل‌های بخش ویژه طرح و محاسبه‌گر اقساط — سکشن تیره Titanium
+   Novin Khodro Fast Installment Calculator Styles
+   ========================================================================== */
+
+.installment-special-section,
+.calculator-card,
+#installment-plan,
+.calc-results-box,
+.slide-installment-hint,
+.nav-link-item.inst-highlight,
+.mob-bar-btn.calc {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.installment-banner-head {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2.75rem;
+}
+
+.slogan-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(252, 224, 76, 0.12);
+  color: #FCE04C;
+  padding: 0.4rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(233, 191, 50, 0.4);
+}
+
+.slogan-pill svg {
+  flex-shrink: 0;
+}
+
+.inst-headline {
+  font-size: var(--nk-fs-h2);
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #F1E781 0%, #FCE04C 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #FCE04C;
+}
+
+.inst-subhead {
+  font-size: var(--nk-fs-body);
+  color: var(--text-on-dark-muted);
+  line-height: 1.85;
+}
+
+.installment-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 1.25fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.installment-steps-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inst-step-card {
+  background: var(--surface-800);
+  border: 1px solid var(--line-on-dark);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  transition: var(--transition-smooth);
+}
+
+.inst-step-card:hover {
+  transform: translateX(-4px);
+  border-color: rgba(252, 224, 76, 0.35);
+}
+
+.inst-step-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: var(--nk-fs-lg);
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(233, 191, 50, 0.28); /* R72: هالهٔ آبی → طلایی (D2) */
+}
+
+.inst-step-text h3 {
+  font-size: var(--nk-fs-body);
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+}
+
+.inst-step-text p {
+  font-size: var(--nk-fs-sm);
+  color: var(--text-on-dark-muted);
+  line-height: 1.7;
+}
+
+.inst-feature-trust-badge {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1.5px solid rgba(52, 211, 153, 0.35);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #A7F3D0;
+}
+
+.inst-feature-trust-badge strong {
+  display: block;
+  font-size: var(--nk-fs-sm);
+  font-weight: 900;
+  margin-bottom: 0.15rem;
+}
+
+.inst-feature-trust-badge span {
+  font-size: var(--nk-fs-xs);
+  color: #6EE7B7;
+  line-height: 1.5;
+}
+
+/* کارت محاسبه‌گر اقساط آنلاین — سطح روشن شناور روی سکشن تیره */
+.calculator-card {
+  background: #ffffff;
+  border: 1px solid rgba(147, 197, 253, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.55);
+  position: relative;
+}
+
+.calc-header-badge {
+  display: inline-block;
+  background: rgba(252, 224, 76, 0.12);
+  color: #A1822E;
+  font-size: var(--nk-fs-xs);
+  font-weight: 800;
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(233, 191, 50, 0.35);
+}
+
+.calculator-card h3 {
+  font-size: var(--nk-fs-subhead);
+  font-weight: 900;
+  color: var(--text-title);
+  margin-bottom: 0.35rem;
+}
+
+.calc-subtitle {
+  font-size: var(--nk-fs-sm);
+  color: #475569; /* #94A3B8 was 2.56:1 on white card — AA fail; 7.58:1 now */
+  margin-bottom: 1.75rem;
+}
+
+.calc-control-group {
+  margin-bottom: 1.6rem;
+}
+
+.calc-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  color: var(--text-title);
+}
+
+.calc-val-badge {
+  color: #92400E;
+  font-weight: 900;
+  font-size: var(--nk-fs-h3);
+  background: rgba(252, 224, 76, 0.14);
+  padding: 0.2rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(233, 191, 50, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+.calc-range-input {
+  width: 100%;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: #E2E8F0;
+  outline: none;
+  cursor: pointer;
+  accent-color: var(--brand-gold);
+  margin-bottom: 0.6rem;
+  touch-action: pan-y;
+}
+
+.calc-range-input:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+.slider-limit-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--nk-fs-xs);
+  color: var(--text-light);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* شماره‌گذاری مراحل محاسبه‌گر — نشان دایره‌ای طلایی در ردیف عنوان */
+.calc-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  min-width: 1.5rem;
+  margin-left: 0.55rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #1F2937;
+  font-size: var(--nk-fs-xs);
+  font-weight: 900;
+  vertical-align: middle;
+  box-shadow: 0 2px 6px rgba(233, 191, 50, 0.35);
+}
+
+/* حالت فعال مرحله: حاشیه و هاله طلایی هنگام تعامل کاربر */
+.calc-control-group {
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.85rem;
+  margin: 0 -0.85rem 1.6rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.calc-control-group.active {
+  border-color: rgba(252, 224, 76, 0.65);
+  background: rgba(252, 224, 76, 0.05);
+  box-shadow: 0 0 0 4px rgba(252, 224, 76, 0.12);
+}
+
+.calc-control-group.active .calc-step-num {
+  box-shadow: 0 0 0 4px rgba(252, 224, 76, 0.28), 0 2px 6px rgba(233, 191, 50, 0.35);
+}
+
+/* پیام اعتبارسنجی درون‌خطی فارسی */
+.calc-inline-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: var(--nk-fs-xs);
+  font-weight: 700;
+  line-height: 1.75;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.95rem;
+  margin-bottom: 1.4rem;
+}
+
+.calc-inline-note.note-warning {
+  background: rgba(252, 224, 76, 0.12);
+  border: 1px solid rgba(252, 224, 76, 0.55);
+  color: #92400E;
+}
+
+.calc-inline-note.note-info {
+  background: rgba(252, 224, 76, 0.07);
+  border: 1px solid rgba(233, 191, 50, 0.3);
+  color: #92400E;
+}
+
+/* راند ۲۹: حالت خطای واضح محاسبه‌گر */
+.calc-inline-note.note-error {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #B91C1C;
+}
+
+.calc-results-box.calc-error {
+  opacity: 0.55;
+  filter: grayscale(0.6);
+  border-color: rgba(239, 68, 68, 0.55);
+  box-shadow: none;
+}
+
+.btn-apply-loan.btn-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* کلیدهای سریع پیش‌فرض قیمت (Preset Pills) با تاچ تارگت استاندارد */
+.quick-preset-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.preset-pill-btn {
+  min-height: var(--touch-target-min);
+  padding: 0 1rem;
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-xs);
+  font-weight: 800;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.preset-pill-btn:hover {
+  background: rgba(252, 224, 76, 0.1);
+  border-color: var(--brand-gold);
+  color: #92400E;
+}
+
+.preset-pill-btn.active {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  border-color: var(--brand-gold);
+  box-shadow: 0 2px 10px rgba(233, 191, 50, 0.35);
+}
+
+/* کلیدهای تعداد ماه بازپرداخت */
+.tenure-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.tenure-btn {
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: 0 0.5rem;
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.tenure-btn:hover {
+  border-color: var(--brand-gold);
+  color: #92400E;
+}
+
+.tenure-btn.active {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  border-color: var(--brand-gold);
+  box-shadow: 0 2px 10px rgba(233, 191, 50, 0.35);
+}
+
+/* باکس خروجی محاسبات — بلوک نتیجه برجسته با هویت طلایی برند */
+/* R35: پنل نتیجه/خلاصه محاسبه‌گر — سطح تیره برند با هاله طلایی */
+.calc-results-box {
+  background: linear-gradient(135deg, #111827 0%, #1F2937 100%);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.6rem;
+  margin: 1.75rem 0 1.5rem;
+  border: 1px solid rgba(252, 224, 76, 0.4);
+  box-shadow: 0 8px 28px -10px rgba(252, 224, 76, 0.25), inset 0 1px 0 rgba(252, 224, 76, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.calc-results-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(to left, #FCE04C, rgba(233, 191, 50, 0.25));
+}
+
+.calc-res-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  font-size: var(--nk-fs-sm);
+}
+
+.res-label {
+  color: var(--text-on-dark-muted);
+  font-weight: 700;
+}
+
+.res-val {
+  color: var(--text-on-dark);
+  font-weight: 900;
+  font-size: var(--nk-fs-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.calc-res-row.highlight {
+  border-top: 1.5px solid rgba(252, 224, 76, 0.35);
+  margin-top: 0.7rem;
+  padding-top: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.res-label-main {
+  font-size: var(--nk-fs-h3);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.res-val-main {
+  background: linear-gradient(135deg, #F1E781 0%, #FCE04C 55%, #DBB12B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #FCE04C;
+  font-size: var(--nk-fs-subhead);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  text-shadow: 0 0 22px rgba(252, 224, 76, 0.25);
+  white-space: nowrap;
+}
+
+.calc-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-apply-loan {
+  width: 100%;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: 0 1.25rem;
+  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-body);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.4);
+  transition: var(--transition-smooth);
+}
+
+.btn-apply-loan:hover {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.5);
+  color: #ffffff;
+}
+
+.btn-calc-phone {
+  width: 100%;
+  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: 0 1.25rem;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-title);
+  border-radius: var(--radius-md);
+  font-size: var(--nk-fs-sm);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-smooth);
+}
+
+.btn-calc-phone:hover {
+  background: var(--surface-900);
+  color: #ffffff;
+  border-color: var(--surface-900);
+}
+
+/* ==========================================================================
+   R35: حلقه فوکوس طلایی برند روی تمام کنترل‌های محاسبه‌گر
+   ========================================================================== */
+.preset-pill-btn:focus-visible,
+.tenure-btn:focus-visible,
+.btn-apply-loan:focus-visible,
+.btn-calc-phone:focus-visible,
+.calc-range-input:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-md);
+}
+
+.btn-apply-loan:hover {
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+  color: #0B1220;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(233, 191, 50, 0.45);
+}
+
+.btn-calc-phone:hover {
+  background: rgba(252, 224, 76, 0.08);
+  border-color: var(--brand-gold);
+  color: #92400E;
+}
+
+/* R35: حرکت کاهش‌یافته — غیرفعال‌سازی ترنزیشن‌ها و انیمیشن‌های محاسبه‌گر */
+@media (prefers-reduced-motion: reduce) {
+  .calc-control-group,
+  .calc-control-group.active,
+  .preset-pill-btn,
+  .tenure-btn,
+  .btn-apply-loan,
+  .btn-calc-phone,
+  .calc-results-box,
+  .res-val-main {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .btn-apply-loan:hover,
+  .btn-calc-phone:hover {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   راند ۴۲: پالایش طلایی نهایی — هِیرلاین طلایی و هالهٔ هاور روی کارت‌ها
+   ========================================================================== */
+
+/* هِیرلاین طلایی بالای کارت محاسبه‌گر — هماهنگ با cta-band راند ۳۱ */
+.calculator-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(252, 224, 76, 0) 0%, #FCE04C 50%, rgba(233, 191, 50, 0) 100%);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  pointer-events: none;
+}
+
+/* حاشیهٔ طلایی هاور + هالهٔ نرم روی کارت محاسبه‌گر */
+.calculator-card {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.calculator-card:hover {
+  border-color: rgba(252, 224, 76, 0.55);
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(252, 224, 76, 0.08);
+}
+
+/* کارت‌های گام: هِیرلاین طلایی + حاشیه و هالهٔ طلایی هنگام هاور */
+.inst-step-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.inst-step-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(252, 224, 76, 0) 0%, rgba(252, 224, 76, 0.9) 50%, rgba(233, 191, 50, 0) 100%);
+  opacity: 0.65;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.inst-step-card:hover {
+  transform: translateX(-4px);
+  border-color: rgba(252, 224, 76, 0.55);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25), 0 0 0 4px rgba(252, 224, 76, 0.08);
+}
+
+.inst-step-card:hover::before {
+  opacity: 1;
+}
+
+/* حالت فعال/انتخاب‌شده: گرادیان طلایی با متن تیره برند */
+.calculator-card.is-selected {
+  border-color: transparent;
+  outline: 2px solid #FCE04C;
+  outline-offset: -2px;
+}
+
+.calculator-card.is-selected::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #FCE04C 0%, #E9BF32 100%);
+}
+
+/* حلقهٔ فوکوس طلایی روی کنترل‌های محاسبه‌گر (راند ۴۲ — پوشش کامل) */
+.calculator-card input[type='range']:focus-visible,
+.calculator-card button:focus-visible,
+.calculator-card select:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+/* حرکت کاهش‌یافته — پوشش عناصر راند ۴۲ */
+@media (prefers-reduced-motion: reduce) {
+  .calculator-card,
+  .inst-step-card,
+  .inst-step-card::before {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .calculator-card:hover,
+  .inst-step-card:hover {
+    transform: none !important;
+  }
+}
